@@ -32,10 +32,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-
   test "ユーザー情報を更新できるか" do
     @user = users(:test_user)
-    patch user_url(@user), params: { user: { name: "updated_user" } }
+    put user_url(@user), params: { user: { name: "updated_user" } }
     assert_redirected_to user_url(@user)
     @user.reload
     assert_equal "updated_user", @user.name
