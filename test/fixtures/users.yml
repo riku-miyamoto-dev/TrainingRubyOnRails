@@ -1,4 +1,2 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-test_user:
-  name: MyString
+# test_user:
+#   name: 田中 純一郎
