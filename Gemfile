@@ -46,6 +46,9 @@ group :development, :test do
 
   # Audits gems for known security defects (use config/bundler-audit.yml to ignore issues)
   gem "bundler-audit", require: false
+
+  #課題3追加課題 fixtureの代わりにfactory_botを使用しよう　にて使用
+  gem 'factory_bot_rails'
 end
 
 group :development do
