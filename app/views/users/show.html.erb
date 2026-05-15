@@ -1,4 +1,60 @@
-<h1><%= @user.name %></h1>
+<div>
+    <p>id</p>
+    <h3><%= @user.id%></h3>
+</div>
+
+<div>
+    <p>ふりがな</p>
+    <h1><%= @user.furigana%></h1>
+</div>
+<div>
+    <p>名前</p>
+    <h1><%= @user.name %></h1>
+</div>  
+<div>
+    <p>性別</p>
+    <h1><%= @user.gender%></h1>
+</div>
+<div>
+    <p>電話番号</p>
+    <h1><%= @user.tell%></h1>
+</div>
+<div>
+    <p>携帯電話</p>
+    <h1><%= @user.phone%></h1>
+</div>
+<div>
+    <p>メールアドレス</p>
+    <h1><%= @user.email%></h1>
+</div>
+<div>
+    <p>郵便番号</p>
+    <h1>〒<%= @user.post_number%></h1>
+</div>
+<div>
+    <p>都道府県</p>
+    <h1><%= @user.prefecture%></h1>
+</div>
+<div>
+    <p>市区</p>
+    <h1><%= @user.city%></h1>
+</div>
+<div>
+    <p>町村</p>
+    <h1><%= @user.town%></h1>
+</div>
+<div>
+    <p>番地</p>
+    <h1><%= @user.street_address%></h1>
+</div>
+<div>
+    <p>建物</p>
+    <h1><%= @user.building%></h1>
+</div>
+<div>
+    <p>誕生日</p>
+    <h1><%= @user.birthday%></h1>
+</div>
 
 <%= link_to "Back", users_path %>
 <%= link_to "Edit", edit_user_path(@user) %>
