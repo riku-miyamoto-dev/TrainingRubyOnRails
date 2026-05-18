@@ -27,7 +27,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_15_051251) do
     t.string "post_number"
     t.string "prefecture"
     t.string "street_address"
-    t.string "tell"
+    t.string "tel"
     t.string "town"
     t.datetime "updated_at", null: false
   end

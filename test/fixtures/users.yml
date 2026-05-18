@@ -1,2 +1,14 @@
-# test_user:
-#   name: 田中 純一郎
+test_user:
+  name: "田中 純一郎"
+  birthday: 1991-10-11
+  building: "グランドタワー"
+  city: "新宿区"
+  email: "test@example"
+  furigana: "タナカジュンイチロウ"
+  gender: "male"
+  phone: "001-0000-0001"
+  post_number: "001-1111"
+  prefecture: "東京都"
+  street_address: "1-1-11"
+  tel: "00-0000-0000"
+  town: "新宿区"

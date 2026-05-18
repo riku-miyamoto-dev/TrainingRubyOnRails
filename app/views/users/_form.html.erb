@@ -28,9 +28,9 @@
   </div>
   <div>
     <%= form.label :"電話番号" %>
-    <%= form.telephone_field :tell %>
-    <% if form.object.errors[:tell].any? %>
-      <%= user.errors.where(:tell).map(&:full_message)%>
+    <%= form.telephone_field :tel %>
+    <% if form.object.errors[:tel].any? %>
+      <%= user.errors.where(:tel).map(&:full_message)%>
     <% end %>
   </div>
   <div>
@@ -56,7 +56,8 @@
   </div>
   <div>
     <%= form.label :"都道府県" %>
-    <%= form.text_field :prefecture %>
+    <%= form.select :prefecture, User.prefectures.keys,{include_blank: '選択してください'}%>
+
     <% if form.object.errors[:prefecture].any? %>
       <%= user.errors.where(:prefecture).map(&:full_message)%>
     <% end %>

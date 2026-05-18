@@ -2,7 +2,7 @@ class AddColumnToUser < ActiveRecord::Migration[8.1]
   def change
     add_column :users, :furigana, :string
     add_column :users, :gender, :string
-    add_column :users, :tell, :string
+    add_column :users, :tel, :string
     add_column :users, :phone, :string
     add_column :users, :email, :string
     add_column :users, :post_number, :string
