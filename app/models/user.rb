@@ -1,7 +1,6 @@
 class User < ApplicationRecord
-  validates :name, :furigana, :gender, :tell, :email, :post_number, :prefecture, :city, :town, :street_address, :birthday, presence: true
-  validates :name, length: { minimum: 2 }
-  validates :name, length: { maximum: 50 }
+  validates :name, :furigana, :gender, :tell, :email, :post_number, :prefecture, :city, :town, :street_address, :birthday, presence: { message: "省略できません" }
+  validates :name, length: { in: 2..50, too_short: "は%{count}文字から入力可能です", too_long: "は%{count}文字まで入力可能です"}
 
   validates :email, :tell, uniqueness: true
 
@@ -10,8 +9,8 @@ class User < ApplicationRecord
   end
 
   # 電話番号の最長が11桁で間にハイフンが入っているため、最長13桁
-  validates :phone, :tell,length:{ maximum: 13 }
-
+  validates :tell,length:{ in: 10..13 , too_short: "は%{count}文字から入力可能です", too_long: "は%{count}文字まで入力可能です"} 
+  validates :phone, length:{ is: 13 }
     
-  enum :gender, male: "Male", female: "Female", other: "Others"
+  enum :gender, male: "male", female: "female", other: "others"
   end

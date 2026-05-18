@@ -3,96 +3,96 @@
   <div>
     <%= form.label :"名前" %>
     <%= form.text_field :name %>
-    <% if form.object.errors.any? %>
+    <% if form.object.errors[:name].any? %>
       <%= user.errors.where(:name).map(&:full_message)%>
     <% end %>
   </div>
   <div>
     <%= form.label :"フリガナ" %>
     <%= form.text_field :furigana %>
-    <% if form.object.errors.any? %>
+    <% if form.object.errors[:furigana].any? %>
       <%= user.errors.where(:furigana).map(&:full_message)%>
     <% end %>
   </div>
   <div>
     <%= form.label :"性別" %>
-    <%= form.radio_button :gender, "Male" %>
+    <%= form.radio_button :gender, "male" %>
     <%= form.label :male, "男性" %>
-    <%= form.radio_button :gender, "Female" %>
+    <%= form.radio_button :gender, "female" %>
     <%= form.label :female, "女性" %>
-    <%= form.radio_button :gender, "Others" %>
+    <%= form.radio_button :gender, "others" %>
     <%= form.label :others, "その他" %>
-    <% if form.object.errors.any? %>
+    <% if form.object.errors[:gender].any? %>
       <%= user.errors.where(:gender).map(&:full_message)%>
     <% end %>
   </div>
   <div>
     <%= form.label :"電話番号" %>
     <%= form.telephone_field :tell %>
-    <% if form.object.errors.any? %>
+    <% if form.object.errors[:tell].any? %>
       <%= user.errors.where(:tell).map(&:full_message)%>
     <% end %>
   </div>
   <div>
     <%= form.label :"携帯番号" %>
     <%= form.telephone_field :phone %>
-    <% if form.object.errors.any? %>
+    <% if form.object.errors[:phone].any? %>
       <%= user.errors.where(:phone).map(&:full_message)%>
     <% end %>
   </div>
   <div>
     <%= form.label :"メールアドレス" %>
     <%= form.email_field :email %>
-    <% if form.object.errors.any? %>
+    <% if form.object.errors[:email].any? %>
       <%= user.errors.where(:email).map(&:full_message)%>
     <% end %>
   </div>
   <div>
     <%= form.label :"郵便番号" %>
     <%= form.text_field :post_number %>
-    <% if form.object.errors.any? %>
+    <% if form.object.errors[:post_number].any? %>
       <%= user.errors.where(:post_number).map(&:full_message)%>
     <% end %>
   </div>
   <div>
     <%= form.label :"都道府県" %>
     <%= form.text_field :prefecture %>
-    <% if form.object.errors.any? %>
+    <% if form.object.errors[:prefecture].any? %>
       <%= user.errors.where(:prefecture).map(&:full_message)%>
     <% end %>
   </div>
   <div>
     <%= form.label :"市区" %>
     <%= form.text_field :city %>
-    <% if form.object.errors.any? %>
+    <% if form.object.errors[:city].any? %>
       <%= user.errors.where(:city).map(&:full_message)%>
     <% end %>
   </div>
   <div>
     <%= form.label :"町村" %>
     <%= form.text_field :town %>
-    <% if form.object.errors.any? %>
+    <% if form.object.errors[:town].any? %>
       <%= user.errors.where(:town).map(&:full_message)%>
     <% end %>
   </div>
   <div>
     <%= form.label :"番地" %>
     <%= form.text_field :street_address %>
-    <% if form.object.errors.any? %>
+    <% if form.object.errors[:street_address].any? %>
       <%= user.errors.where(:street_address).map(&:full_message)%>
     <% end %>
   </div>
   <div>
     <%= form.label :"建物・番号" %>
     <%= form.text_field :building %>
-    <% if form.object.errors.any? %>
+    <% if form.object.errors[:building].any? %>
       <%= user.errors.where(:building).map(&:full_message)%>
     <% end %>
   </div>
   <div>
     <%= form.label :誕生日 %>
     <%= form.date_field :birthday %>
-    <% if form.object.errors.any? %>
+    <% if form.object.errors[:birthday].any? %>
       <%= user.errors.where(:birthday).map(&:full_message)%>
     <% end %>
   </div>
