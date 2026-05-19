@@ -27,7 +27,10 @@ class User < ApplicationRecord
     with: /\A\d{2}[-]\d{4}[-]\d{4}|\d{4}[-]\d{2}[-]\d{4}|\d{3}[-]\d{3}[-]\d{4}|\d{3}[-]\d{2}[-]\d{4}\z/, 
     massage: "電話番号は2桁-４桁-４桁 or 4桁-2桁-４桁 or 3桁-3桁-４桁 or 3桁-2桁-４桁の形でお願いします"
   }
-
+  validates :email, format: {
+    with: URI::MailTo::EMAIL_REGEXP
+  }
+  
   enum :gender, {male: "male", female: "female", other: "others"}, validate: true
   enum :prefecture, {
     北海道: "北海道",
