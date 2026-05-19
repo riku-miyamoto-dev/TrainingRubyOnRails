@@ -1,60 +1,66 @@
-<div>
-    <p>id</p>
-    <h3><%= @user.id%></h3>
-</div>
+<table>
+    <tr>
+        <th>項目</th>
+        <th>内容</th>
+    </tr>
 
-<div>
-    <p>ふりがな</p>
-    <h1><%= @user.furigana%></h1>
-</div>
-<div>
-    <p>名前</p>
-    <h1><%= @user.name %></h1>
-</div>  
-<div>
-    <p>性別</p>
-    <h1><%= @user.gender%></h1>
-</div>
-<div>
-    <p>電話番号</p>
-    <h1><%= @user.tel%></h1>
-</div>
-<div>
-    <p>携帯電話</p>
-    <h1><%= @user.phone%></h1>
-</div>
-<div>
-    <p>メールアドレス</p>
-    <h1><%= @user.email%></h1>
-</div>
-<div>
-    <p>郵便番号</p>
-    <h1>〒<%= @user.post_number%></h1>
-</div>
-<div>
-    <p>都道府県</p>
-    <h1><%= @user.prefecture%></h1>
-</div>
-<div>
-    <p>市区</p>
-    <h1><%= @user.city%></h1>
-</div>
-<div>
-    <p>町村</p>
-    <h1><%= @user.town%></h1>
-</div>
-<div>
-    <p>番地</p>
-    <h1><%= @user.street_address%></h1>
-</div>
-<div>
-    <p>建物</p>
-    <h1><%= @user.building%></h1>
-</div>
-<div>
-    <p>誕生日</p>
-    <h1><%= @user.birthday%></h1>
-</div>
+<tr>
+    <td>id</td>
+    <td><%= @user.id%></td>
+</tr>
+
+<tr>
+    <td>ふりがな</td>
+    <td><%= @user.furigana%></td>
+</tr>
+<tr>
+    <td>名前</td>
+    <td><%= @user.name %></td>
+</tr>  
+<tr>
+    <td>性別</td>
+    <td><%= @user.gender%></td>
+</tr>
+<tr>
+    <td>電話番号</td>
+    <td><%= @user.tel%></td>
+</tr>
+<tr>
+    <td>携帯電話</td>
+    <td><%= @user.phone%></td>
+</tr>
+<tr>
+    <td>メールアドレス</td>
+    <td><%= @user.email%></td>
+</tr>
+<tr>
+    <td>郵便番号</td>
+    <td>〒<%= @user.post_number%></td>
+</tr>
+<tr>
+    <td>都道府県</td>
+    <td><%= @user.prefecture%></td>
+</tr>
+<tr>
+    <td>市区</td>
+    <td><%= @user.city%></td>
+</tr>
+<tr>
+    <td>町村</td>
+    <td><%= @user.town%></td>
+</tr>
+<tr>
+    <td>番地</td>
+    <td><%= @user.street_address%></td>
+</tr>
+<tr>
+    <td>建物</td>
+    <td><%= @user.building%></td>
+</tr>
+<tr>
+    <td>誕生日</td>
+    <td><%= @user.birthday%></td>
+</tr>
 
 <%= link_to "Back", users_path %>
 <%= link_to "Edit", edit_user_path(@user) %>
