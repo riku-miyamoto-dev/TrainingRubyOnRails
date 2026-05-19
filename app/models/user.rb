@@ -2,20 +2,31 @@ class User < ApplicationRecord
   validates :name, :furigana, :gender, :tel, :email, :post_number, :prefecture, :city, :town, :street_address, :birthday, presence: { message: "省略できません" }
   validates :name, length: { in: 2..50, too_short: "は%{count}文字から入力可能です", too_long: "は%{count}文字まで入力可能です"}
 
-  validates :email, :tel, uniqueness: true
+  validates :email, uniqueness:{ massage: "すでに使われているメールアドレスです"}
+  validates :tel, uniqueness:{ massage: "すでに使われている携帯番号です"}
 
 
   validates_each :birthday do |record, attr, value|
     record.errors.add(attr, "では未来の日付を設定できません")if value > Date.today
   end
 
-  validates :furigana, format: {with:/\A[ァ-ヶー－]+\z/}
-  validates :post_number, format: {with:/\A\d{3}[-]\d{4}\z/}
+  validates :furigana, format: {
+    with: /\A[ァ-ヶー－]+\z/,
+    massage: "フリガナは全角カタカナでお願いします"
+  }
+  validates :post_number, format: {
+    with: /\A\d{3}[-]\d{4}\z/, 
+    massage: "郵便番号は⚪︎⚪︎⚪︎-⚪︎⚪︎⚪︎⚪︎の形でお願いします"
+  }
 
-  # 電話番号の最長が11桁で間にハイフンが入っているため、最長13桁
-  validates :tel,length:{ in: 10..13 , too_short: "は%{count}文字から入力可能です", too_long: "は%{count}文字まで入力可能です"} 
-  validates :phone, format: {with:/\A\d{3}[-]\d{4}[-]\d{4}\z/}
-  validates :tel, format: {with:/\A\d{2}[-]\d{4}[-]\d{4}|\d{4}[-]\d{2}[-]\d{4}|\d{3}[-]\d{3}[-]\d{4}|\d{3}[-]\d{2}[-]\d{4}\z/}
+  validates :phone, format: {
+    with: /\A\d{3}[-]\d{4}[-]\d{4}\z/, 
+    massage: "携帯番号は３桁-４桁-４桁の形でお願いします"
+  }
+  validates :tel, format: {
+    with: /\A\d{2}[-]\d{4}[-]\d{4}|\d{4}[-]\d{2}[-]\d{4}|\d{3}[-]\d{3}[-]\d{4}|\d{3}[-]\d{2}[-]\d{4}\z/, 
+    massage: "電話番号は2桁-４桁-４桁 or 4桁-2桁-４桁 or 3桁-3桁-４桁 or 3桁-2桁-４桁の形でお願いします"
+  }
 
   enum :gender, {male: "male", female: "female", other: "others"}, validate: true
   enum :prefecture, {
