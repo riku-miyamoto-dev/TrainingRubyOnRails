@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  belongs_to :department
+  has_many :department
   
   
   validates :name, :furigana, :gender, :tel, :email, :post_number, :prefecture, :city, :town, :street_address, :birthday, presence: { message: "省略できません" }
