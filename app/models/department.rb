@@ -1,4 +1,4 @@
 class Department < ApplicationRecord
-  has_many :users
-  # validates :name, presence: true
+  has_many :users, dependent: :destroy
+  validates :name, presence: true
 end
