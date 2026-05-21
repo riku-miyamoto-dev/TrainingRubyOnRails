@@ -41,6 +41,6 @@ def index
 
   private
     def department_params
-      params.require(:department).permit(:name)
+      params.expect(department: [ :name ])
     end
 end
