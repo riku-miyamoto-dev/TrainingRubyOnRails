@@ -4,7 +4,7 @@ class CreateDepartments < ActiveRecord::Migration[8.1]
       t.string :name
       t.timestamps
     end
-    add_reference :users, :department, null: true, foreign_key: true
+    add_reference :users, :department, null: true, foreign_key: false
   end
 end
 
