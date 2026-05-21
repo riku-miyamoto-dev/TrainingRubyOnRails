@@ -1,7 +1,7 @@
 class CreateDepartments < ActiveRecord::Migration[8.1]
   def change
     create_table :departments do |t|
-      t.string :department_name
+      t.string :name
       t.timestamps
     end
     add_reference :users, :department, null: true, foreign_key: true

@@ -1,0 +1,11 @@
+<h1>部署名</h1>
+
+<%= link_to "New department", new_department_path %>
+<div id="departments">
+  <% @department.each do |department| %>
+    <div>
+      <%= link_to department.name, department_path(department.id) %>
+      <%# <%=link_to user.name, user_path(user.id) %>
+    </div>
+  <% end %> 
+</div>

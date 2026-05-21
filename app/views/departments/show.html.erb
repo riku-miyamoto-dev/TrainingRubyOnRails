@@ -1,0 +1,20 @@
+<table>
+    <tr>
+        <th>項目</th>
+        <th>内容</th>
+    </tr>
+
+<tr>
+    <td>部署id</td>
+    <td><%= @department.id%></td>
+</tr>
+
+<tr>
+    <td>部署名</td>
+    <td><%= @department.name%></td>
+</tr>
+
+
+<%= link_to "Back", departments_path %>
+<%= link_to "Edit", edit_department_path(@department) %>
+<%= button_to "Delete", @department, method: :delete, data: { turbo_confirm: "Are you sure?" } %>

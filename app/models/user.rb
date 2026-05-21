@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-  has_many :department
-  
+  belongs_to :department
   
   validates :name, :furigana, :gender, :tel, :email, :post_number, :prefecture, :city, :town, :street_address, :birthday, presence: { message: "省略できません" }
   validates :name, length: { in: 2..50, too_short: "は%{count}文字から入力可能です", too_long: "は%{count}文字まで入力可能です"}

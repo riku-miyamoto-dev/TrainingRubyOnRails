@@ -16,7 +16,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_20_053655) do
 
   create_table "departments", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.string "department_name"
+    t.string "name"
     t.datetime "updated_at", null: false
   end
 
