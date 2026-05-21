@@ -61,6 +61,10 @@
     <td>誕生日</td>
     <td><%= @user.birthday%></td>
 </tr>
+<tr>
+    <td>部署</td>
+    <td><%= @user.department.name%></td>
+</tr>
 
 <%= link_to "Back", users_path %>
 <%= link_to "Edit", edit_user_path(@user) %>
