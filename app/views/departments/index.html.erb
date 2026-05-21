@@ -5,7 +5,7 @@
   <% @department.each do |department| %>
     <div>
       <%= link_to department.name, department_path(department.id) %>
-      <%# <%=link_to user.name, user_path(user.id) %>
+      <%=link_to "ユーザー一覧へ", users_path %>
     </div>
   <% end %> 
 </div>
