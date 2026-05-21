@@ -91,15 +91,24 @@
     <% end %>
   </div>
   <div>
-    <%= form.label :誕生日 %>
+    <%= form.label :"誕生日" %>
     <%= form.date_field :birthday, value: "2000-01-01"%>
     <% if form.object.errors[:birthday].any? %>
       <%= user.errors.where(:birthday).map(&:full_message).first%>
     <% end %>
   </div>
-
+  <div>
+    <%= form.label :"部署" %>
+    <% Department.all.each do |department| %> 
+      <%= form.radio_button :department_id, department.id%>
+      <%= form.label "department_id_#{department.id}", department.name do %>
+        <%= department.name%>
+      <%end%>
+    <% end %> 
+  </div>
 
   <div>
     <%= form.submit %>
   </div>
 <% end %>
+
