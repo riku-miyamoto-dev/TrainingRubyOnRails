@@ -13,7 +13,14 @@
     <td>部署名</td>
     <td><%= @department.name%></td>
 </tr>
-
+<tr>
+    <td>所属者</td>
+    <td>
+        <% User.all.each do |user| %> 
+            <%= user.name%>
+        <%end%>
+    </td>
+</tr>
 
 <%= link_to "Back", departments_path %>
 <%= link_to "Edit", edit_department_path(@department) %>
