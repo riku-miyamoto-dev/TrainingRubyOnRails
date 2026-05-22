@@ -98,13 +98,8 @@
     <% end %>
   </div>
   <div>
-    <%= form.label :"部署" %>
-    <% Department.all.each do |department| %> 
-      <%= form.radio_button :department_id, department.id%>
-      <%= form.label "department_id_#{department.id}", department.name do %>
-        <%= department.name%>
-      <%end%>
-    <% end %> 
+    <%= form.label :index_users_on_department_id, "部署" %>
+    <%= form.collection_select :department_id, Department.all, :id, :name, { prompt: "部署を選択してください" } %>
   </div>
 
   <div>
