@@ -3,26 +3,28 @@
         <th>項目</th>
         <th>内容</th>
     </tr>
+    <tr>
+        <td>部署id</td>
+        <td><%= @department.id%></td>
+    </tr>
+    <tr>
+        <td>部署名</td>
+        <td><%= @department.name%></td>
+    </tr>
+</table>
 
-<tr>
-    <td>部署id</td>
-    <td><%= @department.id%></td>
-</tr>
+<table>
+  <tr>
+    <th>ユーザー覧</th>
+  </tr>
+    <td>
+      <% @department.users.each do |user| %>
+        <%= link_to user.name, user_path(user.id) %>
+      <% end %>
+    </td>
+  </tr>
+</table>
 
-<tr>
-    <td>部署名</td>
-    <td><%= @department.name%></td>
-</tr>
-
-<h2>所属者</h2>
-    <ol>
-        
-        <% @department.users.each do |user| %>
-            <li>
-                <p><%= link_to user.name, user_path(user.id) %></p>
-            </li>
-        <% end %>
-    </ol>
 
 <%= link_to "Back", departments_path %>
 <%= link_to "Edit", edit_department_path(@department) %>
