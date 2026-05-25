@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_20_053655) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_25_074910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -18,6 +18,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_20_053655) do
     t.datetime "created_at", null: false
     t.string "name", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_skills", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "skills_id", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "users_id", null: false
+    t.index ["skills_id"], name: "index_user_skills_on_skills_id"
+    t.index ["users_id"], name: "index_user_skills_on_users_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,4 +54,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_20_053655) do
     t.datetime "updated_at", null: false
     t.index ["department_id"], name: "index_users_on_department_id"
   end
+
+  add_foreign_key "user_skills", "skills", column: "skills_id"
+  add_foreign_key "user_skills", "users", column: "users_id"
 end
