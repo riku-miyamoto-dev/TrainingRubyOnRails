@@ -10,25 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_15_051251) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_20_053655) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
-  create_table "users", force: :cascade do |t|
-    t.date "birthday"
-    t.string "building"
-    t.string "city"
+  create_table "departments", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.string "email"
-    t.string "furigana"
-    t.string "gender"
-    t.string "name"
-    t.string "phone"
-    t.string "post_number"
-    t.string "prefecture"
-    t.string "street_address"
-    t.string "tel"
-    t.string "town"
+    t.string "name", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.date "birthday", null: false
+    t.string "building"
+    t.string "city", null: false
+    t.datetime "created_at", null: false
+    t.bigint "department_id", null: false
+    t.string "email", null: false
+    t.string "furigana", null: false
+    t.string "gender", null: false
+    t.string "name", null: false
+    t.string "phone"
+    t.string "post_number", null: false
+    t.string "prefecture", null: false
+    t.string "street_address", null: false
+    t.string "tel", null: false
+    t.string "town", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_users_on_department_id"
   end
 end

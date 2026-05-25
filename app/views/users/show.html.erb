@@ -61,7 +61,12 @@
     <td>誕生日</td>
     <td><%= @user.birthday%></td>
 </tr>
+<tr>
+    <td>部署</td>
+    <td><%= @user.department.name%></td>
+</tr>
 
 <%= link_to "Back", users_path %>
 <%= link_to "Edit", edit_user_path(@user) %>
 <%= button_to "Delete", @user, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+<%= link_to "部署一覧へ", departments_path %>
