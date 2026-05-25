@@ -35,10 +35,14 @@ def index
 
   def destroy
     @department = Department.find(params[:id])
-    @department.destroy
-    redirect_to departments_path
+    if @department.destroy
+      redirect_to departments_path
+    else
+      render :show, status: :unprocessable_entity
+    end
   end
 
+  
   private
     def department_params
       params.expect(department: [ :name ])
