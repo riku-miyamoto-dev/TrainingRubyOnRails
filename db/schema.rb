@@ -28,11 +28,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_25_074910) do
 
   create_table "user_skills", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.bigint "skills_id", null: false
+    t.bigint "skill_id", null: false
     t.datetime "updated_at", null: false
-    t.bigint "users_id", null: false
-    t.index ["skills_id"], name: "index_user_skills_on_skills_id"
-    t.index ["users_id"], name: "index_user_skills_on_users_id"
+    t.bigint "user_id", null: false
+    t.index ["skill_id"], name: "index_user_skills_on_skill_id"
+    t.index ["user_id"], name: "index_user_skills_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,6 +55,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_25_074910) do
     t.index ["department_id"], name: "index_users_on_department_id"
   end
 
-  add_foreign_key "user_skills", "skills", column: "skills_id"
-  add_foreign_key "user_skills", "users", column: "users_id"
+  add_foreign_key "user_skills", "skills"
+  add_foreign_key "user_skills", "users"
 end
