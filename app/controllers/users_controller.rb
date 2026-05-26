@@ -42,6 +42,6 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.expect(user: [:name, :furigana, :gender, :tel, :phone, :email, :post_number, :prefecture, :city, :town, :street_address, :building, :birthday ,:department_id, :user_skill_id, :skill_id])
+      params.expect(user: [:name, :furigana, :gender, :tel, :phone, :email, :post_number, :prefecture, :city, :town, :street_address, :building, :birthday ,:department_id, :user_skill_id, skill_ids:[],])
     end
 end
