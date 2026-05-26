@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   belongs_to :department
-  has_many :users_skills
+  has_many :users_skills, dependent: :destroy
   has_many :skills, through: :users_skills
   
   validates :name, :furigana, :gender, :tel, :email, :post_number, :prefecture, :city, :town, :street_address, :birthday, presence: { message: "省略できません" }
