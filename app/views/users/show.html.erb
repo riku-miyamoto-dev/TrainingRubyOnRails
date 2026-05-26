@@ -67,8 +67,13 @@
   </tr>
   <tr>
     <td>スキル</td>
-    <%= @user.skill.each do |skill|%>
-        
+    <td>
+    <ul>
+      <% @user.skills.each do |skill|%>
+        <li><%= link_to skill.name, skill_path(skill.id) %></li>
+      <%end%>
+      </ul>
+    </td>
   </tr>
 </table>
 <%= link_to "Back", users_path %>
