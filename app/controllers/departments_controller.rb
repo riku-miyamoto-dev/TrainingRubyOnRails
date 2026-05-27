@@ -45,6 +45,8 @@ def index
   
   private
     def department_params
-      params.expect(department: [ :name ])
+      params.expect(department: [ 
+        :name 
+      ])
     end
 end

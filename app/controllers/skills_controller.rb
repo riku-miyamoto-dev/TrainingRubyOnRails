@@ -43,7 +43,9 @@ class SkillsController < ApplicationController
   private
 
   def skill_params
-    params.expect(skill: [:name ])
+    params.expect(skill: [
+      :name 
+    ])
   end
 end
   
