@@ -1,17 +1,17 @@
 require "test_helper"
 
 class DepartmentsControllerTest < ActionDispatch::IntegrationTest
-  test "部署一覧の表示" do
+  test "#index 部署一覧の取得が成功すること" do
     get departments_url
     assert_response :success
   end
 
-  test "新規作成ページの表示" do
+  test "#new 部署の作成ページ取得が成功すること" do
     get new_department_url
     assert_response :success
   end 
 
-  test "部署作成時にレコードが一件増えること" do
+  test "#post 部署の作成が成功すること" do
     assert_difference("Department.count") do
       post departments_url, params: { 
         department: { 
@@ -22,20 +22,20 @@ class DepartmentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to department_url(Department.last)
   end  
 
-  test "部署編集ページを表示できるか" do
-    @department = departments(:product1)
+  test "#edit 部署の編集ページ取得が成功すること" do
+    @department = departments(:pd1)
     get edit_department_url(@department)
     assert_response :success
   end
 
-  test "部署の詳細を表示できるか" do
-    @department = departments(:product1)
+  test "#show 部署詳細ページの取得が成功すること" do
+    @department = departments(:pd1)
     get department_url(@department)
     assert_response :success
   end
 
-  test "情報を更新できるか" do
-    @department = departments(:product1)
+  test "#update 部署の情報更新が成功すること" do
+    @department = departments(:pd1)
     patch department_url(@department), params: { 
       department: { 
         name: "PD1",
@@ -46,7 +46,7 @@ class DepartmentsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "PD1", @department.name
   end
 
-    test "部署を削除できるか" do
+    test "#delete 部署の削除が成功すること" do
     user = users(:test_user)
     assert_difference("User.count", -1) do
       delete user_url(user)
