@@ -1,32 +1,34 @@
 require "test_helper"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  test "ユーザー一覧の表示" do
+  test "#index ユーザー一覧の取得が成功すること" do
     get users_url
     assert_response :success
   end
 
-  test "ユーザーを新規作成するページの表示" do
+  test "#new ユーザー登録ページの取得が成功すること" do
     get new_user_url
     assert_response :success
   end
 
-  test "ユーザーを作成時にレコードが一件増えること" do
+  test "#post ユーザーの新規レコード作成が成功すること" do
     assert_difference("User.count") do
       post users_url, params: { user: { 
         name: "田中 純三郎",
-        birthday: "2022-05-12",
-        building: "グランドタワー",
+        birthday: "2020-05-12",
+        building: "グランドタワ",
         city: "新宿区",
-        email: "testmail@expext",
+        email: "tanaka@jun.san",
         furigana: "タナカジュンサンロウ",
         gender: "male",
-        phone: "001-2222-0001",
+        phone: "001-2888-0001",
         post_number: "111-2222",
         prefecture: "東京都",
         street_address: "1-2-10",
-        tel: "00-0000-2222",
-        town: "新宿区"
+        tel: "0550-01-2222",
+        town: "新宿区",
+        department_id: 1,
+        skill_ids: [skills(:language).id]
         } 
       }
     end
@@ -34,21 +36,21 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
   
 
-  test "ユーザーの詳細を表示できるか" do
+  test "#show ユーザーの詳細ページ取得が成功すること" do
     user = users(:test_user)
     get user_url(user)
     assert_response :success
   end
 
-  test "ユーザー編集ページを表示できるか" do
+  test "#edit ユーザー情報の編集ページの取得が成功すること" do
     user = users(:test_user)
     get edit_user_url(user)
     assert_response :success
   end
 
-  test "ユーザー情報を更新できるか" do
+  test "#update ユーザー情報のアップデートが成功すること" do
     user = users(:test_user)
-    patch user_url(user), params: { user: {
+    updated_user = User.new(
       name: "田中 純二郎",
       birthday: "1991-11-11",
       building: "グランドツリー",
@@ -61,25 +63,29 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       prefecture: "京都府",
       street_address: "1-2-11",
       tel: "00-0000-1111",
-      town: "新宿区新宿区3丁目" } }
+      town: "新宿区新宿区3丁目" ,
+      skill_ids: [skills(:english).id]
+      
+      )
+    patch user_url(user), params: {user: updated_user.attributes}
     assert_redirected_to user_url(user)
     user.reload
-    assert_equal "田中 純二郎", user.name
-    assert_equal "タナカジュンジロウ", user.furigana
-    assert_equal "female", user.gender
-    assert_equal "00-0000-1111", user.tel
-    assert_equal "001-1111-0001", user.phone
-    assert_equal "test@example.rb", user.email
-    assert_equal "111-1111", user.post_number
-    assert_equal "京都府", user.prefecture
-    assert_equal "新宿区西新宿", user.city
-    assert_equal "新宿区新宿区3丁目", user.town
-    assert_equal "1-2-11", user.street_address
-    assert_equal "グランドツリー", user.building
+    assert_equal updated_user.name, user.name
+    assert_equal updated_user.furigana, user.furigana
+    assert_equal updated_user.gender, user.gender
+    assert_equal updated_user.tel, user.tel
+    assert_equal updated_user.phone, user.phone
+    assert_equal updated_user.email, user.email
+    assert_equal updated_user.post_number, user.post_number
+    assert_equal updated_user.prefecture, user.prefecture
+    assert_equal updated_user.city, user.city
+    assert_equal updated_user.town, user.town
+    assert_equal updated_user.street_address, user.street_address
+    assert_equal updated_user.building, user.building
     assert_equal Date.new(1991, 11, 11), user.birthday
   end
 
-  test "ユーザーを削除できるか" do
+  test "#delete ユーザー情報の削除が成功すること" do
     user = users(:test_user)
     assert_difference("User.count", -1) do
       delete user_url(user)
