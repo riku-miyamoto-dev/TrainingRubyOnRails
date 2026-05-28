@@ -14,7 +14,7 @@ class User < ApplicationRecord
     record.errors.add(attr, "では未来の日付を設定できません")if value > Date.today
   end
 
-  validates :furigana, format: { with: /\A[ァ-ヶー－]+\z/,
+  validates :furigana, format: { with: /\A[ァ-ンヴー\s　]+\z/,
     message: "は全角カタカナでお願いします" }
 
   validates :post_number, format: {
@@ -22,19 +22,19 @@ class User < ApplicationRecord
     message: "は３桁-４桁の形でお願いします" }
 
 
-    validates :phone, format: { with: /\A\d{3}[-]\d{4}[-]\d{4}\z/,
+    validates :phone, format: { with: /\A\d{3}[-]\d{4}[-]\d{4}\z/, allow_blank: true,
     message: "は３桁-４桁-４桁の形でお願いします" }
 
 
   validates :tel, format: {
-    with: /\A\d{2}[-]\d{4}[-]\d{4}|\d{4}[-]\d{2}[-]\d{4}|\d{3}[-]\d{3}[-]\d{4}|\d{3}[-]\d{2}[-]\d{4}\z/, 
-    message: "は2桁-４桁-４桁 or 4桁-2桁-４桁 or 3桁-3桁-４桁 or 3桁-2桁-４桁の形でお願いします"
+    with: /\A(?:\d{3}-\d{4}-\d{4}|\d{4}-\d{3}-\d{4}|\d{2}-\d{3}-\d{4}|\d{3}-\d{2}-\d{4}|\d{4}-\d{1}-\d{4}|\d{2}-\d{4}-\d{4}|\d{4}-\d{2}-\d{4}|\d{3}-\d{3}-\d{4}|\d{5}-\d{1}-\d{4}|\d{2}-\d{2}-\d{4}|\d{1}-\d{4}-\d{4})|\d{3}-\d{1}-\d{4}\z/,
+    message: "日本の電話番号に対応する形式でお願いします"
   }
   validates :email, format: {
     with: URI::MailTo::EMAIL_REGEXP
   }
 
-  enum :gender, {male: "male", female: "female", other: "others"}, validate: true
+  enum :gender, {male: "男", female: "女", other: "その他"}, validate: true
   enum :prefecture, {
     北海道: "北海道",
     青森県: "青森県",
