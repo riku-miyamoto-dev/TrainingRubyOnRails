@@ -26,7 +26,7 @@ task csv_import_skip: :environment do
         )
       end
 
-    rescue => e 
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound => e 
       error_records << { id: row['no'], name: row['namae'], error: e.message }
       next
     end   
