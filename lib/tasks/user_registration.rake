@@ -17,6 +17,7 @@ namespace :user_registration do
     CSV.foreach(file_path, headers: true) do |row|
       begin
         department_id = departments[row['department_name']]
+        raise ActiveRecord::RecordNotFound, "部署が見つかりません: #{row['department_name']}" if department_id.nil?
 
         user = User.new(
           name: row['namae'],
