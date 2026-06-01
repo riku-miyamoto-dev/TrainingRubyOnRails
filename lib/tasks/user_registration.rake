@@ -1,7 +1,7 @@
 namespace :import do
   
   desc "csvファイルでレコードを読み込む(エラーレコードは排除)"
-  task :csv_import_skip, [:file_path] => :environment do |task, args| 
+  task :user_csv, [:file_path] => :environment do |task, args| 
     file_path = args[:file_path]
 
     if file_path.blank?
@@ -16,7 +16,6 @@ namespace :import do
     departments = Department.all.pluck(:name, :id).to_h
 
     CSV.foreach(file_path, headers: true) do |row|
-      department_id = departments[row['department_name']]
       users << User.new(
         name: row['namae'],
         furigana: row['rubi'],
