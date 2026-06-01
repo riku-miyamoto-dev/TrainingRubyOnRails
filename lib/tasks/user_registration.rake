@@ -12,35 +12,40 @@ namespace :import do
     end
 
     error_records = []
+    users = []
     departments = Department.all.pluck(:name, :id).to_h
 
     CSV.foreach(file_path, headers: true) do |row|
+      department_id = departments[row['department_name']]
+      users << User.new(
+        name: row['namae'],
+        furigana: row['rubi'],
+        gender: row['seibetu'],
+        tel: row['denwa'],
+        phone: row['keitai'],
+        email: row['mairu'],
+        post_number: row['yuubinbango'],
+        prefecture: row['jusho1'],
+        city: row['jusho2'],
+        town: row['jusho3'],
+        street_address: row['jusho4'],
+        building: row['jusho5'],
+        birthday: row['tanjobi'],
+        department_id: departments[row['department_name']]
+      )
+    end
+    users.each do |user|
       begin
-        department_id = departments[row['department_name']]
-        raise ActiveRecord::RecordNotFound, "部署が見つかりません: #{row['department_name']}" if department_id.nil?
-
-        User.create!(
-          name: row['namae'],
-          furigana: row['rubi'],
-          gender: row['seibetu'],
-          tel: row['denwa'],
-          phone: row['keitai'],
-          email: row['mairu'],
-          post_number: row['yuubinbango'],
-          birthday: row['tanjobi'],
-          prefecture: row['jusho1'],
-          city: row['jusho2'],
-          town: row['jusho3'],
-          street_address: row['jusho4'],
-          building: row['jusho5'],
-          department_id: department_id
-        )
+        ActiveRecord::Base.transaction do
+          user.save!
+        end
       rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound => e
-        error_records << { id: row['no'], name: row['namae'], error: e.message }
+        error_records << {name: user.name, error: e.message }
       end
     end
+
     error_records.each do |err|
-      puts "保存失敗レコード ID: #{err[:id]}, Name: #{err[:name]}, Error: #{err[:error]}"
+      puts "保存失敗レコード Name: #{err[:name]}, Error: #{err[:error]}"
     end
   end 
 end
