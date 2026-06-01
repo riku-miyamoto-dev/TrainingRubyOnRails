@@ -4,6 +4,13 @@ namespace :user_registration do
   task :csv_import_skip, [:file_path] => :environment do |task, args| 
     file_path = args[:file_path]
 
+    if file_path.blank?
+      abort "エラー: CSVファイルのパスを引数として指定してください。"
+    end
+    unless File.exist?(file_path)
+      abort "エラー: 指定されたファイルが見つかりません: #{file_path}"
+    end
+
     error_records = []
     departments = Department.all.pluck(:name, :id).to_h
 
