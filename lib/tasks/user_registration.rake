@@ -35,9 +35,7 @@ namespace :import do
     end
     users.each do |user|
       begin
-        ActiveRecord::Base.transaction do
-          user.save!
-        end
+        user.save!
       rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound => e
         error_records << {name: user.name, error: e.message }
       end
