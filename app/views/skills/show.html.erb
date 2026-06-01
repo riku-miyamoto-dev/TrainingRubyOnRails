@@ -1,0 +1,31 @@
+<table>
+    <tr>
+        <th>項目</th>
+        <th>内容</th>
+    </tr>
+    <tr>
+        <td>部署id</td>
+        <td><%= @skill.id%></td>
+    </tr>
+    <tr>
+        <td>部署名</td>
+        <td><%= @skill.name%></td>
+    </tr>
+</table>
+
+<table> 
+  <tr>
+    <th>ユーザー覧</th>
+  </tr>
+    <td>
+      <% @skill.users.each do |user| %>
+        <%= link_to user.name, user_path(user.id) %>
+      <% end %> 
+    </td>
+  </tr>
+</table>
+
+
+<%= link_to "Back", skills_path %>
+<%= link_to "Edit", edit_skill_path(@skill) %>
+<%= button_to "Delete", @skill, method: :delete, data: { turbo_confirm: "Are you sure?" }  %>
