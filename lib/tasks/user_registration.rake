@@ -1,4 +1,4 @@
-namespace :user_registration do
+namespace :import do
   
   desc "csvファイルでレコードを読み込む(エラーレコードは排除)"
   task :csv_import_skip, [:file_path] => :environment do |task, args| 
@@ -19,7 +19,7 @@ namespace :user_registration do
         department_id = departments[row['department_name']]
         raise ActiveRecord::RecordNotFound, "部署が見つかりません: #{row['department_name']}" if department_id.nil?
 
-        user = User.new(
+        User.create!(
           name: row['namae'],
           furigana: row['rubi'],
           gender: row['seibetu'],
@@ -35,7 +35,6 @@ namespace :user_registration do
           building: row['jusho5'],
           department_id: department_id
         )
-        user.save!
       rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound => e
         error_records << { id: row['no'], name: row['namae'], error: e.message }
       end
