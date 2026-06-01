@@ -3,27 +3,34 @@ class User < ApplicationRecord
   has_many :users_skills, dependent: :destroy
   has_many :skills, through: :users_skills
   
-  validates :name, :furigana, :gender, :tel, :email, :post_number, :prefecture, :city, :town, :street_address, :birthday, presence: { message: "省略できません" }
-  validates :name, length: { in: 2..50, too_short: "は%{count}文字から入力可能です", too_long: "は%{count}文字まで入力可能です"}
+  validates :name, :furigana, :gender, :tel, :email, :post_number, :prefecture, :city, :town, :street_address, :birthday, presence: { message: "は省略できません" }
+  validates :name, :email, :furigana, :prefecture, :city, :town, :street_address, :building, length: { maximum: 100, message: "は100の文字以内でお願いします" }
 
-  validates :email, uniqueness:{ message: "すでに使われているメールアドレスです"}
+  validates :email, uniqueness:{ case_sensitive: false, 
+    message: "すでに使われているメールアドレスです"
+  }
+
+
   validates :tel, uniqueness:{ message: "すでに使われている携帯番号です"}
-
 
   validates_each :birthday do |record, attr, value|
     record.errors.add(attr, "では未来の日付を設定できません")if value > Date.today
   end
 
   validates :furigana, format: { with: /\A[ァ-ンヴー\s　]+\z/,
-    message: "は全角カタカナでお願いします" }
+    message: "は全角カタカナでお願いします" 
+  }
 
   validates :post_number, format: {
     with: /\A\d{3}[-]\d{4}\z/, 
-    message: "は３桁-４桁の形でお願いします" }
+    message: "は３桁-４桁の形でお願いします" 
+  }
 
 
-    validates :phone, format: { with: /\A\d{3}[-]\d{4}[-]\d{4}\z/, allow_blank: true,
-    message: "は３桁-４桁-４桁の形でお願いします" }
+  validates :phone, format: { with: /\A\d{3}[-]\d{4}[-]\d{4}\z/, 
+    allow_nil: true,
+    message: "は３桁-４桁-４桁の形でお願いします" 
+  }
 
 
   validates :tel, format: {
