@@ -1,7 +1,7 @@
 namespace :user_registration do
-
-desc "csvファイルでレコードを読み込む(エラーレコードは排除)"
-task csv_import_skip: :environment do 
+  
+  desc "csvファイルでレコードを読み込む(エラーレコードは排除)"
+  task csv_import_skip: :environment do 
   error_records = []
   
   CSV.foreach('personal_infomation.csv', headers: true) do |row|
@@ -28,7 +28,6 @@ task csv_import_skip: :environment do
 
     rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound => e 
       error_records << { id: row['no'], name: row['namae'], error: e.message }
-      next
     end   
   end
   error_records.each do |err|
