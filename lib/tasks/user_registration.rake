@@ -1,14 +1,14 @@
 namespace :user_registration do
 
-  desc "csvファイルを読み込む"
-  task csv_import: :environment do 
-    ActiveRecord::Base.transaction do
-
-      CSV.foreach('personal_infomation.csv', headers: true) do |row|
-        departments = Department.find_by!(name: row['department_name'])
-        skills = Skill.find_by!(name: row['skill_name'])
-        begin
-          User.create!(
+desc "csvファイルでレコードを読み込む(エラーレコードは排除)"
+task csv_import_skip: :environment do 
+  error_records = []
+  
+  CSV.foreach('personal_infomation.csv', headers: true) do |row|
+    begin
+      ActiveRecord::Base.transaction do
+        department = Department.find_by!(name: row['department_name'])
+        user = User.create!(
           name: row['namae'],
           furigana: row['rubi'],
           gender: row['seibetu'],
@@ -22,18 +22,18 @@ namespace :user_registration do
           town: row['jusho3'],
           street_address: row['jusho4'],
           building: row['jusho5'],
-          department_id: departments.id
+          department_id: department.id
         )
-        UsersSkill.create!(
-          user_id: row['no'],
-          skill_id: skills.id
-        )
-        rescue => e
-          puts "エラーは#{row['namae']}さんのレコードで起こっています"
-          Rails.logger.error("エラーが発生しました: #{e.message}")
-          raise
-        end   
       end
-    end 
+
+    rescue => e 
+      error_records << { id: row['no'], name: row['namae'], error: e.message }
+      next
+    end   
   end
+  error_records.each do |err|
+    puts "保存失敗レコード ID: #{err[:id]}, Name: #{err[:name]}, Error: #{err[:error]}"
+  end
+  end 
+
 end
