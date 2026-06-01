@@ -1,14 +1,17 @@
 namespace :user_registration do
   
   desc "csvファイルでレコードを読み込む(エラーレコードは排除)"
-  task csv_import_skip: :environment do 
-  error_records = []
-  
-  CSV.foreach('personal_infomation.csv', headers: true) do |row|
-    begin
-      ActiveRecord::Base.transaction do
-        department = Department.find_by!(name: row['department_name'])
-        user = User.create!(
+  task :csv_import_skip, [:file_path] => :environment do |task, args| 
+    file_path = args[:file_path]
+
+    error_records = []
+    departments = Department.all.pluck(:name, :id).to_h
+
+    CSV.foreach(file_path, headers: true) do |row|
+      begin
+        department_id = departments[row['department_name']]
+
+        user = User.new(
           name: row['namae'],
           furigana: row['rubi'],
           gender: row['seibetu'],
@@ -22,17 +25,15 @@ namespace :user_registration do
           town: row['jusho3'],
           street_address: row['jusho4'],
           building: row['jusho5'],
-          department_id: department.id
+          department_id: department_id
         )
+        user.save!
+      rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound => e
+        error_records << { id: row['no'], name: row['namae'], error: e.message }
       end
-
-    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound => e 
-      error_records << { id: row['no'], name: row['namae'], error: e.message }
-    end   
-  end
-  error_records.each do |err|
-    puts "保存失敗レコード ID: #{err[:id]}, Name: #{err[:name]}, Error: #{err[:error]}"
-  end
+    end
+    error_records.each do |err|
+      puts "保存失敗レコード ID: #{err[:id]}, Name: #{err[:name]}, Error: #{err[:error]}"
+    end
   end 
-
 end
