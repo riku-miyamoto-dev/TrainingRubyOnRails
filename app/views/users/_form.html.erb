@@ -17,9 +17,9 @@
   <div>
     <%= form.label :gender, "性別" %>
     <%= form.radio_button :gender, "male" %>
-    <%= form.label :male, "男性" %>
+    <%= form.label :male, "男" %>
     <%= form.radio_button :gender, "female" %>
-    <%= form.label :female, "女性" %>
+    <%= form.label :female, "女" %>
     <%= form.radio_button :gender, "others" %>
     <%= form.label :others, "その他" %>
     <% if form.object.errors[:gender].any? %>
