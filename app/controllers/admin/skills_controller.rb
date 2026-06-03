@@ -1,5 +1,4 @@
-class Admin::SkillsController < ApplicationController
-
+class Admin::SkillsController < Admin::ApplicationController
   def index
     @skills = Skill.all
   end
