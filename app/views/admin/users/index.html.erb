@@ -1,0 +1,12 @@
+<h1>ユーザー</h1>
+<h1>これは管理者画面です</h1>
+<%= link_to "New user", new_admin_user_path %>
+<%=link_to "部署一覧へ", admin_departments_path %>  
+<%= link_to "スキル一覧へ", admin_skills_path %>
+<div id="users">
+  <% @users.each do |user| %>
+    <div>
+       <%= link_to user.name, admin_user_path(user.id) %>
+    </div>
+  <% end %>
+</div>

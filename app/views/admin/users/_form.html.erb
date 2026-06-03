@@ -1,0 +1,114 @@
+<%= form_with model: user do |form| %>
+  <div>
+    <%= form.label :name, "名前" %>
+    <%= form.text_field :name %>
+    <% if form.object.errors[:name].any? %>
+      <%= form.object.errors.where(:name).map(&:full_message).first %>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :furigana, "フリガナ" %>
+    <%= form.text_field :furigana %>
+    <% if form.object.errors[:furigana].any? %>
+      <%= form.object.errors.where(:furigana).map(&:full_message).first %>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :gender, "性別" %>
+    <%= form.radio_button :gender, "male" %>
+    <%= form.label :male, "男" %>
+    <%= form.radio_button :gender, "female" %>
+    <%= form.label :female, "女" %>
+    <%= form.radio_button :gender, "others" %>
+    <%= form.label :others, "その他" %>
+    <% if form.object.errors[:gender].any? %>
+      <%= form.object.errors.where(:gender).map(&:full_message).first %>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :tel, "電話番号" %>
+    <%= form.telephone_field :tel %>
+    <% if form.object.errors[:tel].any? %>
+      <%= form.object.errors.where(:tel).map(&:full_message).first %>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :phone, "携帯番号" %>
+    <%= form.telephone_field :phone %>
+    <% if form.object.errors[:phone].any? %>
+      <%= form.object.errors.where(:phone).map(&:full_message).first %>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :email, "メールアドレス" %>
+    <%= form.email_field :email %>
+    <% if form.object.errors[:email].any? %>
+      <%= form.object.errors.where(:email).map(&:full_message).first %>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :post_number, "郵便番号" %>
+    <%= form.text_field :post_number %>
+    <% if form.object.errors[:post_number].any? %>
+      <%= form.object.errors.where(:post_number).map(&:full_message).first %>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :prefecture, "都道府県" %>
+    <%= form.select :prefecture, User.prefectures.keys,{include_blank: '選択してください'}%>
+    <% if form.object.errors[:prefecture].any? %>
+      <%= form.object.errors.where(:prefecture).map(&:full_message).first %>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :city, "市区" %>
+    <%= form.text_field :city %>
+    <% if form.object.errors[:city].any? %>
+      <%= form.object.errors.where(:city).map(&:full_message).first %>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :town, "町村" %>
+    <%= form.text_field :town %>
+    <% if form.object.errors[:town].any? %>
+      <%= form.object.errors.where(:town).map(&:full_message).first %>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :street_address, "番地" %>
+    <%= form.text_field :street_address %>
+    <% if form.object.errors[:street_address].any? %>
+      <%= form.object.errors.where(:street_address).map(&:full_message).first %>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :building, "建物・番号" %>
+    <%= form.text_field :building %>
+    <% if form.object.errors[:building].any? %>
+      <%= form.object.errors.where(:building).map(&:full_message).first %>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :birthday, "誕生日" %>
+    <%= form.date_field :birthday, value: "2000-01-01"%>
+    <% if form.object.errors[:birthday].any? %>
+      <%= form.object.errors.where(:birthday).map(&:full_message).first %>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :department_id, "部署" %>
+    <%= form.collection_select :department_id, Department.all, :id, :name, { prompt: "部署を選択してください" } %>
+    <% if form.object.errors[:department_id].any? %>
+      <%= form.object.errors.where(:department_id).map(&:full_message).first %>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :skill_id, "スキル" %>
+    <%= form.collection_checkboxes :skill_ids, Skill.all, :id, :name %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
