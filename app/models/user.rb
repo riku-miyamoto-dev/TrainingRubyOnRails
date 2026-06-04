@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
 
     validates :phone, format: { with: /\A\d{3}[-]\d{4}[-]\d{4}\z/,
-    message: "は３桁-４桁-４桁の形でお願いします" }
+    message: "は３桁-４桁-４桁の形でお願いします" }, allow_nil: true
 
 
   validates :tel, format: {
@@ -34,7 +34,12 @@ class User < ApplicationRecord
     with: URI::MailTo::EMAIL_REGEXP
   }
 
-  enum :gender, {male: "male", female: "female", other: "others"}, validate: true
+  enum :gender, {
+    male: "男", 
+    female: "女", 
+    other: "その他"
+    }, validate: true
+
   enum :prefecture, {
     北海道: "北海道",
     青森県: "青森県",

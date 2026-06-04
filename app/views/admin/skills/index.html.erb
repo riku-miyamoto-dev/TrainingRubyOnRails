@@ -1,0 +1,11 @@
+<h1>スキル名</h1>
+
+<%= link_to "New skill", new_admin_skill_path %>
+<div id="skills">
+  <% @skills.each do |skill| %>
+    <div>
+      <%= link_to skill.name, admin_skill_path(skill.id) %>
+    </div>
+  <% end %> 
+  <%=link_to "ユーザー一覧へ", admin_users_path %>
+</div>

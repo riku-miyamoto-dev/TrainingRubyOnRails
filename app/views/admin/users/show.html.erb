@@ -38,8 +38,8 @@
     <td>〒<%= @user.post_number%></td>
     </tr>
       <td>都道府県</td>
+      <td><%= @user.prefecture%></td>
     <tr>
-     <td><%= @user.prefecture%></td>
   </tr>
     <tr>
     <td>市区</td>
@@ -70,12 +70,14 @@
     <td>
     <ul>
       <% @user.skills.each do |skill|%>
-        <li><%= link_to skill.name, skill_path(skill.id) %></li>
+        <li><%= link_to skill.name, admin_skill_path(skill.id) %></li>
       <%end%>
       </ul>
     </td>
   </tr>
 </table>
-<%= link_to "Back", users_path %>
-<%= link_to "部署一覧へ", departments_path %>
-<%= link_to "スキル一覧へ", skills_path %>
+<%= link_to "Back", admin_users_path %>
+<%= link_to "Edit", edit_admin_user_path(@user) %>
+<%= button_to "Delete", [:admin, @user], method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+<%= link_to "部署一覧へ", admin_departments_path %>
+<%= link_to "スキル一覧へ", admin_skills_path %>
