@@ -13,7 +13,6 @@ class Admin::UsersController < Admin::ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.assign_attributes(user_params)
 
     if params[:user][:image].present?
       @user.image = params[:user][:image].read
