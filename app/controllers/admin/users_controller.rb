@@ -59,7 +59,7 @@ class Admin::UsersController < Admin::ApplicationController
     redirect_to admin_users_path
   end
   
-  def show_image
+  def image
     @user = User.find(params[:id])
     send_data @user.image, type: @user.image_extension, disposition: :inline 
   end

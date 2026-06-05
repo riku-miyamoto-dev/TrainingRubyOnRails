@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
-  def show_image
+  def image
     @user = User.find(params[:id])
     send_data @user.image, type: @user.image_extension, disposition: :inline 
   end

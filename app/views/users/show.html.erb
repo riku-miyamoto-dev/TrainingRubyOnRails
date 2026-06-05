@@ -19,7 +19,7 @@
   </tr>  
   <tr>
     <% if @user.image.present? %>
-      <%= image_tag(show_image_user_path(@user)) %>
+      <%= image_tag(image_user_path(@user)) %>
     <% else %>
       <p>画像なし</p>
     <% end %>

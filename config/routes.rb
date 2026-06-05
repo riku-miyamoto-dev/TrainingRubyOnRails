@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :skills, only: [:index, :show]
   resources :users, only: [:index, :show]do
       member do
-        get "show_image"
+        get "image"
       end
     end
   # get "users/:id/image", to: "users#show_image", as: "user_image"
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :skills
     resources :users do
       member do
-        get "show_image"
+        get "image"
       end
     end
     # get "users/:id/image", to: "users#show_image", as: "user_image"
