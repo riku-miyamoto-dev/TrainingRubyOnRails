@@ -15,7 +15,7 @@ class Admin::UsersController < Admin::ApplicationController
     @user = User.new(user_params)
     image_file = user_params[:user_img]
     
-    if not image_file.blank?
+    if image_file.present?
       @user.user_img = image_file.read
       @user.user_img_extension = image_file.content_type  
     end
