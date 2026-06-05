@@ -25,9 +25,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         post_number: "111-2222",
         prefecture: "東京都",
         street_address: "1-2-10",
-        tel: "0550-01-2222",
+        tel: "00-0000-2222",
         town: "新宿区",
-        department_id: 1,
+        department_id: departments(:product1).id,
         skill_ids: [skills(:language).id]
         } 
       }
