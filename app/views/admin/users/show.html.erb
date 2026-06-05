@@ -19,7 +19,7 @@
   </tr>
   <tr>
     <% if @user.image.present? %>
-      <%= image_tag("data:#{@user.image_extension};base64,#{Base64.strict_encode64(@user.image)}") %>
+      <%= image_tag(user_image_path(@user)) %>
     <% else %>
       <p>画像なし</p>
     <% end %>
