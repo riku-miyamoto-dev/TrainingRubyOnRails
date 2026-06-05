@@ -82,7 +82,7 @@ class Admin::UsersController < Admin::ApplicationController
         :birthday,
         :department_id, 
         :user_skill_id, 
-        skill_ids:[],
+        skill_ids:[]
       ])
     end
 end
