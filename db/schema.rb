@@ -35,6 +35,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_04_052512) do
     t.string "email", null: false
     t.string "furigana", null: false
     t.string "gender", null: false
+    t.binary "image"
+    t.string "image_extension"
     t.string "name", null: false
     t.string "phone"
     t.string "post_number", null: false
@@ -43,8 +45,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_04_052512) do
     t.string "tel", null: false
     t.string "town", null: false
     t.datetime "updated_at", null: false
-    t.binary "user_img"
-    t.string "user_img_extension"
     t.index ["department_id"], name: "index_users_on_department_id"
   end
 
