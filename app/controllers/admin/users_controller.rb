@@ -13,6 +13,13 @@ class Admin::UsersController < Admin::ApplicationController
 
   def create
     @user = User.new(user_params)
+    image_file = user_params[:user_img]
+    
+    if not image_file.blank?
+      @user.user_img = image_file.read
+      @user.user_img_extension = image_file.content_type  
+    end
+
     if @user.save
       redirect_to [:admin, @user]
     else
@@ -27,7 +34,16 @@ class Admin::UsersController < Admin::ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    image_record = user_params
+    
+    if params[:user][:user_img].present?
+      update_img = params[:user][:user_img]
+
+      image_record[:user_img] = update_img.read
+      image_record[:user_img_extension] = update_img.content_type 
+    end
+    
+    if @user.update(image_record)
       redirect_to [:admin, @user]
     else
       render :edit, status: :unprocessable_entity
@@ -58,7 +74,9 @@ class Admin::UsersController < Admin::ApplicationController
         :birthday,
         :department_id, 
         :user_skill_id, 
-        skill_ids:[]
+        :user_img,
+        :user_img_extension,
+        skill_ids:[],
       ])
     end
 end
