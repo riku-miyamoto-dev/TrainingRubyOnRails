@@ -18,8 +18,8 @@
     <td><%= @user.name %></td>
   </tr>
   <tr>
-    <% if @user.user_img.present? %>
-      <%= image_tag("data:#{@user.user_img_extension};base64,#{Base64.strict_encode64(@user.user_img)}") %>
+    <% if @user.image.present? %>
+      <%= image_tag("data:#{@user.image_extension};base64,#{Base64.strict_encode64(@user.image)}") %>
     <% else %>
       <p>画像なし</p>
     <% end %>
