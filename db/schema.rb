@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_25_074910) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_04_052512) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -43,6 +43,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_25_074910) do
     t.string "tel", null: false
     t.string "town", null: false
     t.datetime "updated_at", null: false
+    t.binary "user_img"
+    t.string "user_img_extension"
     t.index ["department_id"], name: "index_users_on_department_id"
   end
 
