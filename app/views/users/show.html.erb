@@ -18,6 +18,13 @@
     <td><%= @user.name %></td>
   </tr>  
   <tr>
+    <% if @user.image.present? %>
+      <%= image_tag(image_user_path(@user)) %>
+    <% else %>
+      <p>画像なし</p>
+    <% end %>
+  </tr>
+  <tr>
     <td>性別</td>
     <td><%= @user.gender%></td>
   </tr>

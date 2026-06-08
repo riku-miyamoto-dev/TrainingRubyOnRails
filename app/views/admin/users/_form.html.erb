@@ -105,8 +105,12 @@
   <div>
     <%= form.label :skill_id, "スキル" %>
     <%= form.collection_checkboxes :skill_ids, Skill.all, :id, :name %>
-  </div>
 
+  </div>
+  <div>
+    <%= form.label :image, "プロフィール画像" %>
+    <%= form.file_field :image %>
+  </div>
   <div>
     <%= form.submit %>
   </div>

@@ -13,6 +13,15 @@ class Admin::UsersController < Admin::ApplicationController
 
   def create
     @user = User.new(user_params)
+
+    if params[:user][:image].present?
+      @user.image = params[:user][:image].read
+    end
+
+    if params[:user][:image].present?
+      @user.image_extension = params[:user][:image].content_type 
+    end
+
     if @user.save
       redirect_to [:admin, @user]
     else
@@ -27,7 +36,17 @@ class Admin::UsersController < Admin::ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    @user.assign_attributes(user_params)
+    
+    if params[:user][:image].present?
+      @user.image = params[:user][:image].read
+    end
+
+    if params[:user][:image].present?
+      @user.image_extension = params[:user][:image].content_type 
+    end
+    
+    if @user.save
       redirect_to [:admin, @user]
     else
       render :edit, status: :unprocessable_entity
@@ -38,6 +57,11 @@ class Admin::UsersController < Admin::ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     redirect_to admin_users_path
+  end
+  
+  def image
+    @user = User.find(params[:id])
+    send_data @user.image, type: @user.image_extension, disposition: "inline" 
   end
 
   private
