@@ -4,7 +4,7 @@
     <%= form.label :name, "名前" %>
     <%= form.text_field :name %>
     <% if form.object.errors[:name].any? %>
-      <%= user.errors.where(:name).map(&:full_message).first%>
+      <%= form.object.errors.where(:name).map(&:full_message).first %>
     <% end %>
   </div>
   

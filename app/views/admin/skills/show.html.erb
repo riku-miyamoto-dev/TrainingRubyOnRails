@@ -19,11 +19,13 @@
   </tr>
     <td>
       <% @skill.users.each do |user| %>
-        <%= link_to user.name, user_path(user.id) %>
+        <%= link_to user.name, admin_user_path(user.id) %>
       <% end %> 
     </td>
   </tr>
 </table>
 
 
-<%= link_to "Back", skills_path %>
+<%= link_to "Back", admin_skills_path %>
+<%= link_to "Edit", edit_admin_skill_path(@skill) %>
+<%= button_to "Delete", [:admin, @skill], method: :delete, data: { turbo_confirm: "Are you sure?" }  %>
