@@ -9,3 +9,4 @@
   <%=link_to "部署一覧へ", departments_path %>  
   <%= link_to "スキル一覧へ", skills_path %>
 </div>
+<%= paginate @users, window: 2, outer_window: 3 %>
