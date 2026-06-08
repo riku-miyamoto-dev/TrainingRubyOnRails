@@ -9,3 +9,5 @@
     </div>
   <% end %>
 </div>
+<%= paginate @users, window: 2, outer_window: 3 %>
+<%= page_entries_info @users %>
