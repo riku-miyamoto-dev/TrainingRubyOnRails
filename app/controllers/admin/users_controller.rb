@@ -61,7 +61,7 @@ class Admin::UsersController < Admin::ApplicationController
   
   def image
     @user = User.find(params[:id])
-    send_data @user.image, type: @user.image_extension, disposition: :inline 
+    send_data @user.image, type: @user.image_extension, disposition: "inline" 
   end
 
   private
