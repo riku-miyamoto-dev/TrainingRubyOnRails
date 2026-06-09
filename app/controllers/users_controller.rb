@@ -2,27 +2,27 @@ class UsersController < ApplicationController
   def index
     if params[:search].present?  
       @users = User.page(params[:page]).per(params[:per_page])
-      if @users.present?
-        if params[:search][:query_name].present?
-          @users = @users.where("name LIKE ?",
-          User.sanitize_sql_like(params[:search][:query_name]) + "%")
-        end
-        if params[:search][:query_prefecture].present?
-          @users = @users.where(prefecture: params[:search][:query_prefecture])
-        end
-        if params[:search][:sort].present?
-          if params[:search][:sort] == "生年月日 昇順"
-            @users = @users.order(birthday: :asc)
-          end
-          if params[:search][:sort] == "生年月日 降順"
-            @users = @users.order(birthday: :desc)
-          end
-        end
+
+      if params[:search][:query_name].present?
+        @users = @users.where("name LIKE ?",
+        User.sanitize_sql_like(params[:search][:query_name]) + "%")
       end
+
+      if params[:search][:query_prefecture].present?
+        @users = @users.where(prefecture: params[:search][:query_prefecture])
+      end
+
+      if params[:search][:sort].present? && params[:search][:sort] == "生年月日 昇順"
+        @users = @users.order(birthday: :asc)
+      elsif params[:search][:sort].present? && params[:search][:sort] == "生年月日 降順"
+        @users = @users.order(birthday: :desc)
+      end
+
     else
       @users = User.order(:name).page(params[:page]).per(params[:per_page])
     end
   end
+  
   def show
     @user = User.find(params[:id])
   end
