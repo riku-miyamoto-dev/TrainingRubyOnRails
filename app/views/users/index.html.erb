@@ -9,6 +9,10 @@
     <%= form.select :query_prefecture, User.prefectures.keys,{include_blank: '選択してください'}%>
   </div>
   <div>
+    <%= form.label :sort, "並び替え" %>
+    <%= form.select :sort, ["生年月日 昇順", "生年月日 降順"],{include_blank: '選択してください'} %>
+  </div>
+  <div>
     <%= form.submit %>
     <%=link_to "クリア", users_path %> 
   </div>

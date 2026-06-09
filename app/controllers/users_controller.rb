@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-  
   def index
-    @users = User.order(:name).page(params[:page]).per(params[:per_page])
     if params[:search].present?  
+      @users = User.page(params[:page]).per(params[:per_page])
       if @users.present?
         if params[:search][:query_name].present?
           @users = @users.where("name LIKE ?",
@@ -11,7 +10,17 @@ class UsersController < ApplicationController
         if params[:search][:query_prefecture].present?
           @users = @users.where(prefecture: params[:search][:query_prefecture])
         end
+        if params[:search][:sort].present?
+          if params[:search][:sort] == "生年月日 昇順"
+            @users = @users.order(birthday: :asc)
+          end
+          if params[:search][:sort] == "生年月日 降順"
+            @users = @users.order(birthday: :desc)
+          end
+        end
       end
+    else
+      @users = User.order(:name).page(params[:page]).per(params[:per_page])
     end
   end
   def show
