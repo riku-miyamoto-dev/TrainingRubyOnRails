@@ -19,16 +19,16 @@
   </tr>
     <td>
       <% @department.users.each do |user| %>
-        <%= link_to user.name, admin_user_path(user.id) %>
+        <%= link_to user.name, admin_department_user_path(@department, user) %>
       <% end %>
     </td>
   </tr>
 </table>
 
 
-<%= link_to "Back", admin_departments_path %>
-<%= link_to "Edit", edit_admin_department_path(@department) %>
-<%= button_to "Delete", [:admin, @department], method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+<%= link_to "戻る", admin_departments_path %>
+<%= link_to "編集", edit_admin_department_path(@department) %>
+<%= button_to "削除", [:admin, @department], method: :delete, data: { turbo_confirm: "Are you sure?" } %>
 <% if @department.errors.any? %>
     <% @department.errors.full_messages.each do |message| %>
         <%= message %>
