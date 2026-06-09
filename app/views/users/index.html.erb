@@ -1,4 +1,19 @@
 <h1>ユーザー</h1>
+<%= form_with url: "/users",scope: "search", method: :get do |form| %>
+  <div>
+    <%= form.label :query_name, "名前:" %>
+    <%= form.search_field :query_name %>
+  </div>
+  <div>
+    <%= form.label :query_prefecture, "都道府県" %>
+    <%= form.select :query_prefecture, User.prefectures.keys,{include_blank: '選択してください'}%>
+  </div>
+  <div>
+    <%= form.submit %>
+    <%=link_to "クリア", users_path %> 
+  </div>
+<% end %>
+
 
 <div id="users">
   <% @users.each do |user| %>
