@@ -12,9 +12,9 @@ class UsersController < ApplicationController
         @users = @users.where(prefecture: params[:search][:query_prefecture])
       end
 
-      if params[:search][:sort].present? && params[:search][:sort] == "生年月日 昇順"
+      if params[:search][:sort_birthday].present? && params[:search][:sort_birthday] == "生年月日 昇順"
         @users = @users.order(birthday: :asc)
-      elsif params[:search][:sort].present? && params[:search][:sort] == "生年月日 降順"
+      elsif params[:search][:sort_birthday].present? && params[:search][:sort_birthday] == "生年月日 降順"
         @users = @users.order(birthday: :desc)
       end
 
