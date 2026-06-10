@@ -18,7 +18,11 @@ class UsersController < ApplicationController
         @users = @users.order(birthday: :desc)
       end
 
-      if params[:search][:between_birthday_fast].present? && params[:search][:between_birthday_late].present? &&  params[:search][:between_birthday_fast] > params[:search][:between_birthday_late]
+      if (
+        params[:search][:between_birthday_fast].present?
+        && params[:search][:between_birthday_late].present?
+        &&  params[:search][:between_birthday_fast] > params[:search][:between_birthday_late]
+        )
         @users = @users.where(birthday: params[:search][:between_birthday_late]..params[:search][:between_birthday_fast])
       end
 
