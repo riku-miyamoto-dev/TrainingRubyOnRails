@@ -18,6 +18,10 @@ class UsersController < ApplicationController
         @users = @users.order(birthday: :desc)
       end
 
+      if params[:search][:per_page].present? 
+         @users = @users.per(params[:search][:per_page])
+      end
+
     else
       @users = User.order(:name).page(params[:page]).per(params[:per_page])
     end
