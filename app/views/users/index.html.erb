@@ -11,6 +11,12 @@
   <div>
     <%= form.label :sort_birthday, "並び替え" %>
     <%= form.select :sort_birthday, ["生年月日 昇順", "生年月日 降順"],{include_blank: '選択してください'} %><br>
+
+    <%= form.label :between_birthday_late, "開始日" %>
+    <%= form.date_field :between_birthday_late%>
+    <%= form.label :between_birthday_fast, "終了日" %>
+    <%= form.date_field :between_birthday_fast%>
+
   </div>
   <div>
     <%= form.label :per_page, "表示件数" %>
