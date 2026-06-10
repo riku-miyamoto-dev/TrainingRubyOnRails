@@ -1,12 +1,13 @@
-Rails.application.routes.draw do
-  concern :paginatable do
-    get '(page/:page)', action: :index, on: :collection, as: ''
-  end
-
+Rails.application.routes.draw do  
   root "users#index"
-  resources :users, only: [:index, :new, :create, :show], concerns: :paginatable
-  resources :departments, only: [:index, :show] do
-    resources :users, only: [:index, :show], concerns: :paginatable do
+  resources :users, only: [:index, :new, :create, :show] do
+    member do
+      get "image"
+    end
+  end
+  
+    resources :departments, only: [:index, :show] do
+    resources :users, only: [:index, :show] do
       member do
         get "image"
       end
@@ -18,10 +19,14 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "users#index"
-    resources :users, concerns: :paginatable
+    resources :users do
+      member do
+          get "image"
+      end
+    end
     resources :skills
     resources :departments do
-      resources :users, concerns: :paginatable do
+      resources :users do
         member do
           get "image"
         end
