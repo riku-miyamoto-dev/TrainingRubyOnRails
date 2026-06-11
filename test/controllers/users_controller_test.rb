@@ -35,4 +35,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get user_url(@user)
     assert_response :success
   end
+
+  test "#image ユーザー画像のアップロードができること" do
+    @user = users(:test_user)
+    get image_user_url(@user)
+    assert_response :success
+  end
 end

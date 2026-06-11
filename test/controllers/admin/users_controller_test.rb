@@ -87,4 +87,10 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to admin_users_url
   end
+  
+    test "#image ユーザー画像のアップロードができること" do
+    @user = users(:test_user)
+    get image_admin_user_url(@user)
+    assert_response :success
+  end
 end
