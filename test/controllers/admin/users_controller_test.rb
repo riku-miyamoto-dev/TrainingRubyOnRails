@@ -80,7 +80,7 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
     assert_equal Date.new(1991, 11, 11), user.birthday
   end
 
-  test "#delete ユーザーを削除できるか" do
+  test "#delete ユーザーを削除できること" do
     user = users(:test_user)
     assert_difference("User.count", -1) do
       delete admin_user_url(user)
