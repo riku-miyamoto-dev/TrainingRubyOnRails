@@ -1,17 +1,17 @@
 require "test_helper"
 
 class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
-  test "ユーザー一覧の表示" do
+  test "#index ユーザー一覧の表示できること" do
     get admin_users_url
     assert_response :success
   end
 
-  test "ユーザーを新規作成するページの表示" do
+  test "#new ユーザーを新規作成するページの表示できること" do
     get new_admin_user_url
     assert_response :success
   end
 
-  test "ユーザーを作成時にレコードが一件増えること" do
+  test "#create ユーザーを作成時にレコードが一件増えること" do
     assert_difference("User.count") do
       post admin_users_url, params: { user: { 
         name: "田中 純三郎",
@@ -35,19 +35,19 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
   end
   
 
-  test "ユーザーの詳細を表示できるか" do
+  test "#show ユーザーの詳細を表示できること" do
     user = users(:test_user)
     get admin_user_url(user)
     assert_response :success
   end
 
-  test "ユーザー編集ページを表示できるか" do
+  test "#edit ユーザー編集ページを表示できること" do
     user = users(:test_user)
     get edit_admin_user_url(user)
     assert_response :success
   end
 
-  test "ユーザー情報を更新できるか" do
+  test "#update ユーザー情報を更新できるか" do
     user = users(:test_user)
     patch admin_user_url(user), params: { user: {
       name: "田中 純二郎",
@@ -80,7 +80,7 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
     assert_equal Date.new(1991, 11, 11), user.birthday
   end
 
-  test "ユーザーを削除できるか" do
+  test "#delete ユーザーを削除できるか" do
     user = users(:test_user)
     assert_difference("User.count", -1) do
       delete admin_user_url(user)
