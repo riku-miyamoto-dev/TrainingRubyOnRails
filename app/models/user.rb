@@ -14,8 +14,7 @@ class User < ApplicationRecord
     record.errors.add(attr, "では未来の日付を設定できません")if value > Date.today
   end
 
-  validates :furigana, format: { with: /\A[ァ-ヶー－]+\z/,
-    message: "は全角カタカナでお願いします" }
+  validates :furigana, format: { with: /\A[ァ-ヶー\s　]+\z/, message: "全角カタカナ、半角スペース、全角スペースのみが使えます" }
 
   validates :post_number, format: {
     with: /\A\d{3}[-]\d{4}\z/, 
@@ -27,7 +26,7 @@ class User < ApplicationRecord
 
 
   validates :tel, format: {
-    with: /\A\d{2}[-]\d{4}[-]\d{4}|\d{4}[-]\d{2}[-]\d{4}|\d{3}[-]\d{3}[-]\d{4}|\d{3}[-]\d{2}[-]\d{4}\z/, 
+    with: /\A0([6789]0[-]\d{4}|\d{1}[-]\d{4}|\d{2}[-]\d{3}|\d{3}[-]\d{2}|\d{4}[-]\d{1})[-]\d{4}\z/,
     message: "は2桁-４桁-４桁 or 4桁-2桁-４桁 or 3桁-3桁-４桁 or 3桁-2桁-４桁の形でお願いします"
   }
   validates :email, format: {
