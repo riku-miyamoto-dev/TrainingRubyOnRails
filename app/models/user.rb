@@ -10,6 +10,9 @@ class User < ApplicationRecord
   validates :tel, uniqueness:{ message: "すでに使われている携帯番号です"}
 
 
+  scope :id_sort_ascending_order, -> { order(id: :asc) }
+  scope :id_sort_descending_order, -> { order(id: :desc) }
+
   validates_each :birthday do |record, attr, value|
     record.errors.add(attr, "では未来の日付を設定できません")if value > Date.today
   end

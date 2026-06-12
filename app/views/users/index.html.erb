@@ -1,4 +1,31 @@
 <h1>ユーザー</h1>
+<%= form_with url: users_path, method: :get do |form| %>
+  <div>
+    <%= form.label :name, "名前:" %>
+    <%= form.search_field :name , value: params[:name]%>
+  </div>
+  <div>
+    <%= form.label :prefecture, "都道府県" %>
+    <%= form.select :prefecture, User.prefectures.keys,{include_blank: '選択してください', selected: params[:prefecture]} %>
+  </div>
+  <div>
+    <%= form.label :sort, "並び替え" %>
+    <%= form.select :sort, ["生年月日 昇順", "生年月日 降順", "id 昇順", "id 降順"],{include_blank: '選択してください', selected: params[:sort]} %><br>
+
+    <%= form.label :between_birthday_late, "開始日" %>
+    <%= form.date_field :between_birthday_late, value: params[:between_birthday_late]%>
+    <%= form.label :between_birthday_fast, "終了日" %>
+    <%= form.date_field :between_birthday_fast,  value: params[:between_birthday_fast]%>
+  </div>
+  <div>
+    <%= form.submit %>
+    <%=link_to "クリア", users_path %> 
+  </div>
+  <div>
+    <%= form.label :per_page, "表示件数" %>
+    <%= form.select :per_page, [10, 50, 100],{include_blank: '選択してください', selected: params.dig(:per_page)} %>
+  </div>
+<% end %>
 
 <div id="users">
   <% @users.each do |user| %>
