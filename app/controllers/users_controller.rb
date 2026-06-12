@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  
+
   def index
-    @users = User.order(:name).page(params[:page]).per(params[:per_page])
+    @users = User.all
   end
 
   def show

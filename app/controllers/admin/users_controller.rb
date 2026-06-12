@@ -1,6 +1,6 @@
 class Admin::UsersController < Admin::ApplicationController
   def index
-    @users = User.order(:name).page(params[:page])
+    @users = User.all
   end
 
   def show
