@@ -23,7 +23,15 @@
   </head>
 
   <body>
-    <h2>みなさんこんにちわ</h2>
+    <header>
+      <% if current_user.present? %>
+        <h4>こんにちわ<%= current_user.name %>さん</h4>
+        <%= button_to "ログアウト", sessions_path, method: :delete %>
+      <%else%>
+        <h2>みなさんこんにちわ</h2>
+        <%= link_to "ログイン", new_sessions_path %>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>

@@ -1,10 +1,4 @@
-<% if @current_user.present? %>
-  <h1><%= @current_user.name %>さんこんにちわ</h1>
-  <%= button_to "ログアウト", sessions_path, method: :delete, data: { turbo_confirm: "Are you sure?" }  %>
-<%else%>
-  <%= link_to "ログイン", new_sessions_path %>
-<% end %>
-
+<h2>検索・並び替え</h2>
 <%= form_with url: users_path, method: :get do |form| %>
   <div>
     <%= form.label :name, "名前:" %>
@@ -33,7 +27,7 @@
   </div>
 <% end %>
 
-<h1>ユーザー</h1>
+<h2>ユーザー</h2>
 <div id="users">
   <% @users.each do |user| %>
     <div>

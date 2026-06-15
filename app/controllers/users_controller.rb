@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
   def index
-    if cookies[:id].present?
-      @current_user = User.find(cookies[:id])
-    end
     @users = User.all
     if params[:name].present?
       @users = @users.where("name LIKE ?",
