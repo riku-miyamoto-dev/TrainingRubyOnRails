@@ -1,0 +1,10 @@
+<%= form_with url: sessions_path, method: :post do |form| %>
+
+  <div>
+    <%= form.label :email, "メールアドレス" %>
+    <%= form.text_field :email %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
