@@ -3,8 +3,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(email:params[:email])
-    cookies[:id] = @user.id
+    user = User.find_by(email:params[:email])
+    if user.present?
+      cookies[:id] = user.id
+    end
     redirect_to users_path
   end
 
