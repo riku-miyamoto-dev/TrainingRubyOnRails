@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
   end
   resources :skills, only: [:index, :show]
+  resource :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:index, :new, :create]
   # get "users/:id/image", to: "users#show_image", as: "user_image"
 
