@@ -5,13 +5,13 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email:params[:email])
     if user.present?
-      cookies[:id] = user.id
+      session[:id] = user.id
     end
     redirect_to users_path
   end
 
   def destroy
-    cookies.delete :id
+    session.delete :id
     redirect_to users_path
   end
 end

@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
 
   private
     def current_user
-      if cookies[:id].present?
-        @current_user = @current_user || User.find(cookies[:id])
+      if session[:id].present?
+        @current_user = @current_user || User.find(session[:id])
       end 
     end
 end
