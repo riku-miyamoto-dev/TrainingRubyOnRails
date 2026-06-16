@@ -1,6 +1,11 @@
 require "test_helper"
 
 class Admin::DepartmentsControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @user = users(:test_user) 
+    post sessions_path, params: { email: @user.email }
+  end
+
   test "#index 部署一覧の表示ができること" do
     get admin_departments_url
     assert_response :success
