@@ -1,4 +1,6 @@
 class Admin::UsersController < Admin::ApplicationController
+  before_action :require_login
+  
   def index
     @users = User.order(:name).page(params[:page])
   end

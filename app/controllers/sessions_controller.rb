@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if user.present?
       session[:id] = user.id
     end
-    redirect_to users_path
+    redirect_to admin_users_path
   end
 
   def destroy

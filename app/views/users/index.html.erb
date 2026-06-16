@@ -1,3 +1,7 @@
+<% if logged_in? %>
+  <%= link_to "管理画面へ", admin_users_path %>
+<% end %>
+
 <h2>検索・並び替え</h2>
 <%= form_with url: users_path, method: :get do |form| %>
   <div>
