@@ -1,5 +1,4 @@
 class Admin::DepartmentsController < Admin::ApplicationController
-
   
   def index
     @department = Department.all

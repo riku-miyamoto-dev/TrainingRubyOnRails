@@ -23,12 +23,6 @@
   </head>
 
   <body>
-    <div>
-      <h2>ここは管理画面です</h2>
-    </div>
-      <h4>こんにちわ<%= current_user.name %>さん</h4>
-      <%= button_to "ログアウト", logout_path, method: :delete %>
-    </header>
     <%= yield %>
   </body>
 </html>
