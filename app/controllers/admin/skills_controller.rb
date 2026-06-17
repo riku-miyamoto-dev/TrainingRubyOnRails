@@ -1,5 +1,4 @@
 class Admin::SkillsController < Admin::ApplicationController
-  before_action :require_login
 
   def index
     @skills = Skill.all

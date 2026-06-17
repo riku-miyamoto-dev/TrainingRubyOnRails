@@ -2,7 +2,8 @@ class Admin::ApplicationController < ActionController::Base
   allow_browser versions: :modern
   stale_when_importmap_changes
   layout 'admin'
-
+  before_action :require_login
+  
    helper_method :current_user, :logged_in?
 
   private

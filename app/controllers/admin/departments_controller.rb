@@ -1,5 +1,5 @@
 class Admin::DepartmentsController < Admin::ApplicationController
-  before_action :require_login
+
   
   def index
     @department = Department.all
