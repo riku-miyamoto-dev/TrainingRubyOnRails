@@ -1,6 +1,10 @@
 require "test_helper"
 
 class Admin::SkillsControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @user = users(:test_user) 
+    post sessions_path, params: { email: @user.email }
+  end
   test "#index スキル一覧の表示ができること" do
     get admin_skills_url
     assert_response :success

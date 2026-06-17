@@ -23,14 +23,11 @@
   </head>
 
   <body>
-    <header>
-      <% if logged_in? %>
-        <h4>こんにちわ<%= current_user.name %>さん</h4>
-        <%= button_to "ログアウト", sessions_path, method: :delete %>
-      <% else %>
-        <h2>みなさんこんにちわ</h2>
-        <%= link_to "ログイン", new_sessions_path %>
-      <% end %>
+    <div>
+      <h2>ここは管理画面です</h2>
+    </div>
+      <h4>こんにちわ<%= current_user.name %>さん</h4>
+      <%= button_to "ログアウト", sessions_path, method: :delete %>
     </header>
     <%= yield %>
   </body>

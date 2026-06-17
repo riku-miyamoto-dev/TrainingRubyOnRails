@@ -1,4 +1,8 @@
-<h1>ユーザー</h1>
+<% if logged_in? %>
+  <%= link_to "管理画面へ", admin_users_path %>
+<% end %>
+
+<h2>検索・並び替え</h2>
 <%= form_with url: users_path, method: :get do |form| %>
   <div>
     <%= form.label :name, "名前:" %>
@@ -27,6 +31,7 @@
   </div>
 <% end %>
 
+<h2>ユーザー</h2>
 <div id="users">
   <% @users.each do |user| %>
     <div>

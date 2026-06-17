@@ -1,6 +1,11 @@
 require "test_helper"
 
 class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @user = users(:test_user) 
+    post sessions_path, params: { email: @user.email }
+  end
+
   test "#index ユーザー一覧の表示できること" do
     get admin_users_url
     assert_response :success
