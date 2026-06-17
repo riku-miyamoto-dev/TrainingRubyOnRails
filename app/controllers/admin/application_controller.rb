@@ -3,7 +3,7 @@ class Admin::ApplicationController < ActionController::Base
   stale_when_importmap_changes
   layout 'admin'
   before_action :require_login
-  
+
    helper_method :current_user, :logged_in?
 
   private
@@ -18,7 +18,7 @@ class Admin::ApplicationController < ActionController::Base
 
   def require_login
     if not logged_in?
-      redirect_to new_sessions_path
+      redirect_to login_path
     end
   end
 end
