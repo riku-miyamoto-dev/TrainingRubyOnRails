@@ -38,7 +38,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_17_061245) do
     t.binary "image"
     t.string "image_extension"
     t.string "name", null: false
-    t.string "password_digest"
+    t.string "password"
     t.string "phone"
     t.string "post_number", null: false
     t.string "prefecture", null: false
