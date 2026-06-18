@@ -7,7 +7,12 @@ class SessionsController < ApplicationController
     if user.present?
       session[:id] = user.id
     end
-    redirect_to admin_users_path
+    if user && user[:password]
+      redirect_to admin_users_path
+    else
+      render :new, 
+      status: :unprocessable_entity
+    end
   end
 
   def destroy
