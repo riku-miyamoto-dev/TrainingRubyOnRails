@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if user.present?
       session[:id] = user.id
     end
-    if user && user[:password]
+    if user && user.authenticate(params[:password])
       redirect_to admin_users_path
     else
       render :new, 

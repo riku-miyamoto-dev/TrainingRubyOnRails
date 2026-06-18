@@ -2,6 +2,8 @@ class User < ApplicationRecord
   belongs_to :department
   has_many :users_skills, dependent: :destroy
   has_many :skills, through: :users_skills
+
+  has_secure_password
   
   validates :name, :furigana, :gender, :tel, :email, :post_number, :prefecture, :city, :town, :street_address, :birthday, presence: { message: "省略できません" }
   validates :name, length: { in: 2..50, too_short: "は%{count}文字から入力可能です", too_long: "は%{count}文字まで入力可能です"}
