@@ -97,14 +97,14 @@
   </div>
   <div>
     <%= form.label :department_id, "部署" %>
-    <%= form.collection_select :department_id, Department.all, :id, :name, { prompt: "部署を選択してください" } %>
+    <%= form.collection_select :department_id, @department, :id, :name, { prompt: "部署を選択してください" } %>
     <% if form.object.errors[:department_id].any? %>
       <%= form.object.errors.where(:department_id).map(&:full_message).first %>
     <% end %>
   </div>
   <div>
     <%= form.label :skill_id, "スキル" %>
-    <%= form.collection_checkboxes :skill_ids, Skill.all, :id, :name %>
+    <%= form.collection_checkboxes :skill_ids, @skill, :id, :name %>
 
   </div>
   <div>

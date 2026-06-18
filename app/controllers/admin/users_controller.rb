@@ -10,6 +10,8 @@ class Admin::UsersController < Admin::ApplicationController
 
   def new
     @user = User.new
+    @department = Department.order(:name)
+    @skill = Skill.order(:name)
   end
 
   def create
