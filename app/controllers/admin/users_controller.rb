@@ -10,11 +10,15 @@ class Admin::UsersController < Admin::ApplicationController
 
   def new
     @user = User.new
+    @department = Department.order(:name)
+    @skill = Skill.order(:name)
   end
 
   def create
     @user = User.new(user_params)
-
+    @department = Department.order(:name)
+    @skill = Skill.order(:name)
+    
     if params[:user][:image].present?
       @user.image = params[:user][:image].read
     end
@@ -33,11 +37,16 @@ class Admin::UsersController < Admin::ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @department = Department.order(:name)
+    @skill = Skill.order(:name)
   end
 
   def update
     @user = User.find(params[:id])
     @user.assign_attributes(user_params)
+    @department = Department.order(:name)
+    @skill = Skill.order(:name)
+
     
     if params[:user][:image].present?
       @user.image = params[:user][:image].read
@@ -83,7 +92,8 @@ class Admin::UsersController < Admin::ApplicationController
         :birthday,
         :department_id, 
         :user_skill_id, 
-        skill_ids:[]
+        :password,
+        skill_ids:[],
       ])
     end
 end
