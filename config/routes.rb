@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   end
   resources :skills, only: [:index, :show]
   resource :sessions, only: [:new, :create, :destroy]
+  get '/auth/github/callback', to: 'github_auth#github_create'
   resources :users, only: [:index, :new, :create]
-  # get "users/:id/image", to: "users#show_image", as: "user_image"
 
   namespace :admin do
     root "users#index"
@@ -33,6 +33,5 @@ Rails.application.routes.draw do
         end
       end
     end
-    # get "users/:id/image", to: "users#show_image", as: "user_image"
   end
 end
