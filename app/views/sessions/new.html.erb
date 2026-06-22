@@ -1,6 +1,5 @@
 <h1>ログイン画面</h1>
 <%= render "sessions/form", session: @session %>
 <%= link_to "戻る", users_path %>
-<%= form_tag('/auth/github', method: 'post') do %>
-  <button type='submit'>github認証</button>
-<% end %>
+
+<%= button_to 'github認証', '/auth/github', method: :post %>

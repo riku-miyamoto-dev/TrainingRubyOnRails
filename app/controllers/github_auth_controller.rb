@@ -2,19 +2,12 @@ class GithubAuthController < ApplicationController
   def github_create
     auth_hash = request.env['omniauth.auth']
     
-    email = auth_hash.dig('info', 'email')
-    binding.break
-    if email.present? && email.end_with?("@rizapgroup.com")
-      user = User.find_by(email: email)
-      
-      if user
-        session[:id] = user.id
-        redirect_to admin_users_path
-      else
-        redirect_to new_sessions_path
-      end
+    email = auth_hash['info']['email']
+    if ((user = User.find_by(email: email)) && email.end_with?("@rizapgroup.com"))
+      session[:id] = user.id
+      redirect_to admin_users_path, status: :see_other
     else
-      render new_sessions_path
+      render new_sessions_path, status: :unauthorized
     end
   end
 end
