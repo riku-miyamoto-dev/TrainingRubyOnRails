@@ -1,0 +1,15 @@
+<nav>
+  <div>
+    <a href="/">ホーム</a>
+    
+    <% @breadcrumbs.each do |breadcrumb| %>
+      <span> / </span>
+
+      <% if breadcrumb[:path].blank? %>
+        <span><%= breadcrumb[:label] %></span>
+      <% else %>
+        <%= link_to breadcrumb[:label], breadcrumb[:path] %>
+      <% end %>
+    <% end %>
+  </div>
+</nav>

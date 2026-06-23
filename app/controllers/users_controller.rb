@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :add_index_breadcrumb, only: %i[show]
   def index
     @users = User.all
     if params[:name].present?
@@ -28,13 +29,19 @@ class UsersController < ApplicationController
       @users = @users.where(birthday: params[:between_birthday_late]..params[:between_birthday_fast])
     end
     @users = @users.order(:name).page(params[:page]).per(params[:per_page])
+    add_breadcrumb('ユーザー一覧')
   end
   
   def show
     @user = User.find(params[:id])
+    add_breadcrumb(@user.name)
   end
   def image
     @user = User.find(params[:id])
     send_data @user.image, type: @user.image_extension, disposition: "inline" 
+  end
+  private
+  def add_index_breadcrumb
+    add_breadcrumb('ユーザー一覧', users_url)
   end
 end

@@ -28,6 +28,7 @@
   </head>
 
   <body>
+    <%= render 'shared/breadcrumbs' %>
     <header>
       <% if logged_in? %>
         <h4>こんにちわ<%= current_user.name %>さん</h4>
