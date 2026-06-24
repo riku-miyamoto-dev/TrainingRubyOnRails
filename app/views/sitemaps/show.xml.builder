@@ -14,21 +14,21 @@ xml.urlset xmlns: "http://www.sitemaps.org/schemas/sitemap/0.9" do
   @users.each do |user|
     xml.url do
       xml.loc user_url(user)
-      xml.lastmod user.updated_at
+      xml.lastmod user.updated_at.iso8601
     end
   end
 
   @skills.each do |skill|
     xml.url do
       xml.loc skill_url(skill) 
-      xml.lastmod skill.updated_at
+      xml.lastmod skill.updated_at.iso8601
     end
   end
 
   @departments.each do |department|
     xml.url do
       xml.loc department_url(department) 
-      xml.lastmod department.updated_at
+      xml.lastmod department.updated_at.iso8601
     end
   end
 
