@@ -1,6 +1,12 @@
 <% content_for :title, "ユーザー詳細| MyApp" %>
 <% content_for :description, "登録されているユーザーの情報を確認できます。" %>
 <% content_for :keywords, "MyApp, ユーザー詳細" %>
+<% content_for :breadcrumb do %>
+  <ol>
+    <li><%= link_to "ホーム", users_path %></li>
+    <li><%= @user.name %></li>
+  </ol>
+<% end %>
 <table>
   <tr>
     <th>項目</th>

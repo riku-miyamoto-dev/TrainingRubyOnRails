@@ -1,4 +1,11 @@
 <% content_for :title, "ユーザー編集| MyApp" %>
+<% content_for :breadcrumb do %>
+  <ol>
+    <li><%= link_to "ホーム", admin_users_path %></li>
+    <li><%= link_to @user.name, admin_user_path(@user.id) %></li>
+    <li><%= @user.name %>の情報編集</li>
+  </ol>
+<% end %>
 <h1>編集</h1>
 <%= render "form",  user: [:admin,  @user] %>
 <%= link_to "戻る", [:admin, @user] %>

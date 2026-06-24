@@ -1,6 +1,13 @@
 <% content_for :title, "部署詳細| MyApp" %>
 <% content_for :description, "登録されている部署の情報と所属している人を確認できます。" %>
 <% content_for :keywords, "MyApp, 部署詳細" %>
+<% content_for :breadcrumb do %>
+  <ol>
+    <li><%= link_to "ホーム", users_path %></li>
+    <li><%= link_to "部署一覧", departments_path %></li>
+    <li><%= @department.name %></li>
+  </ol>
+<% end %>
 <table>
     <tr>
         <th>項目</th>

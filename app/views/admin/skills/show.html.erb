@@ -1,4 +1,11 @@
 <% content_for :title, "スキル詳細| MyApp" %>
+<% content_for :breadcrumb do %>
+  <ol>
+    <li><%= link_to "ホーム", admin_users_path %></li>
+    <li><%= link_to "スキル一覧", admin_skills_path %></li>
+    <li><%= @skill.name %></li>
+  </ol>
+<% end %>
 <table>
     <tr>
         <th>項目</th>

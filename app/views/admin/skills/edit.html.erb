@@ -1,4 +1,12 @@
 <% content_for :title, "スキル編集| MyApp" %>
+<% content_for :breadcrumb do %>
+<ol>
+  <li><%= link_to "ホーム", admin_users_path %></li>
+  <li><%= link_to "スキル一覧", admin_skills_path %></li>
+  <li><%= link_to @skill.name, admin_skill_path(@skill.id) %></li>
+  <li>スキル情報の編集</li>
+</ol>
+<% end %>
 <h1>スキル名編集</h1>
 
 <%= render "form", skill: [:admin, @skill] %>

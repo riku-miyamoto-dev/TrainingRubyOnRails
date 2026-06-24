@@ -23,7 +23,7 @@
   </head>
 
   <body>
-    <%= render 'shared/breadcrumbs' %>
+    <%= content_for(:breadcrumb) %>
     <%= yield %>
   </body>
 </html>

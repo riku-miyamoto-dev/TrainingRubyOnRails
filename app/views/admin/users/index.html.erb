@@ -1,4 +1,9 @@
 <% content_for :title, "ユーザー一覧| MyApp" %>
+<% content_for :breadcrumb do %>
+  <ol>
+    <li>ホーム</li>
+  </ol>
+<% end %>
 <%= link_to "一般画面へ", users_path %>
 <h1>ユーザー</h1>
 <%= link_to "ユーザー作成", new_admin_user_path %>

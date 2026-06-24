@@ -1,6 +1,13 @@
 <% content_for :title, "スキル詳細| MyApp" %>
 <% content_for :description, "登録されているスキルの情報と所持している人を確認できます。" %>
 <% content_for :keywords, "MyApp, スキル詳細" %>
+<% content_for :breadcrumb do %>
+  <ol>
+    <li><%= link_to "ホーム", users_path %></li>
+    <li><%= link_to "スキル一覧", skills_path %></li>
+    <li><%= @skill.name %></li>
+  </ol>
+<% end %>
 <table>
     <tr>
         <th>項目</th>

@@ -1,4 +1,12 @@
 <% content_for :title, "部署編集| MyApp" %>
+<% content_for :breadcrumb do %>
+  <ol>
+    <li><%= link_to "ホーム", admin_users_path %></li>
+    <li><%= link_to "部署一覧", admin_departments_path %></li>
+    <li><%= link_to @department.name, admin_department_path(@department.id) %></li>
+    <li>部署情報の編集</li>
+  </ol>
+<%end%>
 <h1>部署名編集</h1>
 
 <%= render "form", department: [:admin, @department] %>

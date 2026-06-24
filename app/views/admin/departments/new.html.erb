@@ -1,4 +1,11 @@
 <% content_for :title, "新規部署作成| MyApp" %>
+<% content_for :breadcrumb do %>
+  <ol>
+    <li><%= link_to "ホーム", admin_users_path %></li>
+    <li><%= link_to "部署一覧", admin_departments_path %></li>
+    <li>新規部署の作成</li>
+  </ol>
+<%end%>
 <h1>新規作成</h1>
 
 <%= render "form", department: [:admin, @department] %>
