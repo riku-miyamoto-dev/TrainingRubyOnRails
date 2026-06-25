@@ -8,6 +8,38 @@
     <li><%= @department.name %></li>
   </ol>
 <% end %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "<%= root_url %>",
+        "name": "ホーム"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "<%= departments_url %>",
+        "name": "部署一覧"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "<%= department_url(@department) %>",
+        "name": "<%= @department.name %>"
+      }
+    }
+  ]
+}
+</script>
 <table>
     <tr>
         <th>項目</th>

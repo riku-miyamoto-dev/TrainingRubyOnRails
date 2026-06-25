@@ -1,11 +1,6 @@
 <% content_for :title, "ユーザー一覧| MyApp" %>
 <% content_for :description, "登録されているユーザーの一覧を確認でき,検索、ソート機能を備えています。。" %>
 <% content_for :keywords, "MyApp, ユーザー一覧, 絞り込み" %>
-<% content_for :breadcrumb do %>
-  <ol>
-    <li>ホーム</li>
-  </ol>
-<% end %>
 <% if logged_in? %>
   <%= link_to "管理画面へ", admin_users_path %>
 <% end %>
