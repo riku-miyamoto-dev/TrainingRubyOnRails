@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
 
   def new
-    add_breadcrumb('ログイン')
   end
   def create
     user = User.find_by(email:params[:email])
