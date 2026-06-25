@@ -1,19 +1,16 @@
 class Admin::UsersController < Admin::ApplicationController
   def index
     @users = User.order(:name).page(params[:page])
-    add_breadcrumb('ユーザー一覧')
   end
 
   def show
     @user = User.find(params[:id])
-    add_breadcrumb(@user.name)
   end
 
   def new
     @user = User.new
     @department = Department.order(:name)
     @skill = Skill.order(:name)
-    add_breadcrumb('ユーザー新規作成')
   end
 
   def create
@@ -41,8 +38,6 @@ class Admin::UsersController < Admin::ApplicationController
     @user = User.find(params[:id])
     @department = Department.order(:name)
     @skill = Skill.order(:name)
-    add_breadcrumb(@user.name, admin_user_path(@user))
-    add_breadcrumb('ユーザー情報編集')
   end
 
   def update
