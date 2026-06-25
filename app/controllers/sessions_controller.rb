@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+    add_breadcrumb('ログイン')
   end
   def create
     user = User.find_by(email:params[:email])
@@ -19,5 +20,6 @@ class SessionsController < ApplicationController
     session.delete :id
     redirect_to users_path
   end
+
 end
   

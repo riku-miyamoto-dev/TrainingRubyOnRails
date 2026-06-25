@@ -1,3 +1,10 @@
+<% content_for :title, "部署一覧| MyApp" %>
+<% content_for :breadcrumb do %>
+  <ol>
+    <li><%= link_to "ホーム", admin_users_path %></li>
+    <li>部署一覧</li>
+  </ol>
+<% end %>
 <h1>部署名</h1>
 
 <%= link_to "新規部署作成", new_admin_department_path %>

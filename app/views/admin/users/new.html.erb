@@ -1,3 +1,10 @@
+<% content_for :title, "新規ユーザー作成| MyApp" %>
+<% content_for :breadcrumb do %>
+  <ol>
+    <li><%= link_to "ホーム", admin_users_path %></li>
+    <li>新規ユーザーの作成</li>
+  </ol>
+<% end %>
 <h1>新規作成</h1>
 <%= render "form", user: [:admin, @user] %>
 <%= link_to "戻る", admin_users_path %>

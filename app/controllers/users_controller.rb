@@ -28,10 +28,12 @@ class UsersController < ApplicationController
       @users = @users.where(birthday: params[:between_birthday_late]..params[:between_birthday_fast])
     end
     @users = @users.order(:name).page(params[:page]).per(params[:per_page])
+    add_breadcrumb('ユーザー一覧')
   end
   
   def show
     @user = User.find(params[:id])
+    add_breadcrumb(@user.name)
   end
   def image
     @user = User.find(params[:id])

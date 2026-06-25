@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       get "image"
     end
   end
+
+  get '/sitemaps', to: 'sitemaps#show', defaults: { format: "xml" }
   
     resources :departments, only: [:index, :show] do
     resources :users, only: [:index, :show] do

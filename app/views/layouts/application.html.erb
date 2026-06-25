@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "App" %></title>
+    <title><%= content_for(:title) || "MyApp" %></title>
+    <meta name="description" content="<%= content_for(:description) || "myAppです。" %>">
+    <meta name="keywords" content="<%= content_for(:keywords) || "RIZAP , ユーザー" %>">
+    <meta property="og:title" content="<%= content_for(:title) || "MyApp" %>">
+    <meta property="og:description" content="<%= content_for(:description) || "myAppです" %>">
+    <meta property="og:url" content="<%= request.original_url %>">
+    <%# 現在画像を用意していないためコメントアウトのちコメントアウト、画像を追加した場合にurlを()ないに記載する %>
+    <%# <meta property="og:image" content="<%= image_url('...') %>
+    <meta name="twitter:card" content="summary">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="App">
@@ -10,7 +18,7 @@
     <%= csp_meta_tag %>
 
     <%= yield :head %>
-
+    <%= yield :breadcrumb_list %>
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
@@ -23,6 +31,7 @@
   </head>
 
   <body>
+    <%= content_for(:breadcrumb) %>
     <header>
       <% if logged_in? %>
         <h4>こんにちわ<%= current_user.name %>さん</h4>

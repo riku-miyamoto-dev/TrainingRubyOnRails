@@ -1,15 +1,17 @@
 class Admin::DepartmentsController < Admin::ApplicationController
-  
   def index
     @department = Department.all
+    add_breadcrumb('部署一覧')
   end
 
   def show
     @department = Department.find(params[:id])
+    add_breadcrumb(@department.name)
   end
 
   def new
     @department = Department.new
+    add_breadcrumb('部署作成')
   end
 
   def create
@@ -23,6 +25,8 @@ class Admin::DepartmentsController < Admin::ApplicationController
 
   def edit
     @department = Department.find(params[:id])
+    add_breadcrumb(@department.name, admin_department_path(@department))
+    add_breadcrumb('部署編集')
   end
 
   def update
@@ -45,9 +49,9 @@ class Admin::DepartmentsController < Admin::ApplicationController
 
   
   private
-    def department_params
-      params.expect(department: [ 
-        :name 
-      ])
-    end
+  def department_params
+    params.expect(department: [ 
+      :name 
+    ])
+  end
 end

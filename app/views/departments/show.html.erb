@@ -1,3 +1,47 @@
+<% content_for :title, "部署詳細| MyApp" %>
+<% content_for :description, "登録されている部署の情報と所属している人を確認できます。" %>
+<% content_for :keywords, "MyApp, 部署詳細" %>
+<% content_for :breadcrumb do %>
+  <ol>
+    <li><%= link_to "ホーム", users_path %></li>
+    <li><%= link_to "部署一覧", departments_path %></li>
+    <li><%= @department.name %></li>
+  </ol>
+<% end %>
+<% content_for :breadcrumb_list do %>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "<%= root_url %>",
+          "name": "ホーム"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@id": "<%= departments_url %>",
+          "name": "部署一覧"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "<%= department_url(@department) %>",
+          "name": "<%= @department.name %>"
+        }
+      }
+    ]
+  }
+  </script>
+<% end %>
 <table>
     <tr>
         <th>項目</th>
