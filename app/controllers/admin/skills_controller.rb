@@ -1,6 +1,4 @@
 class Admin::SkillsController < Admin::ApplicationController
-before_action :add_users_index_breadcrumb
-before_action :add_index_breadcrumb, only: %i[show new edit]
   def index
     @skills = Skill.all
     add_breadcrumb('スキル一覧')
@@ -51,11 +49,5 @@ before_action :add_index_breadcrumb, only: %i[show new edit]
     params.expect(skill: [
       :name 
     ])
-  end
-  def add_index_breadcrumb
-    add_breadcrumb('スキル一覧', admin_skills_path)
-  end
-  def add_users_index_breadcrumb
-    add_breadcrumb('ユーザー管理', admin_users_path)
   end
 end

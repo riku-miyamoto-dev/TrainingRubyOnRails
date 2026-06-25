@@ -1,5 +1,4 @@
 class Admin::UsersController < Admin::ApplicationController
-before_action :add_index_breadcrumb, only: %i[show new edit]
   def index
     @users = User.order(:name).page(params[:page])
     add_breadcrumb('ユーザー一覧')
@@ -100,8 +99,5 @@ before_action :add_index_breadcrumb, only: %i[show new edit]
         :password,
         skill_ids:[],
       ])
-    end
-    def add_index_breadcrumb
-      add_breadcrumb('ユーザー一覧', admin_users_path)
     end
 end

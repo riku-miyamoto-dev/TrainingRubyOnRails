@@ -1,6 +1,4 @@
 class Admin::DepartmentsController < Admin::ApplicationController
-  before_action :add_users_index_breadcrumb
-  before_action :add_index_breadcrumb, only: %i[show new edit]
   def index
     @department = Department.all
     add_breadcrumb('部署一覧')
@@ -55,11 +53,5 @@ class Admin::DepartmentsController < Admin::ApplicationController
     params.expect(department: [ 
       :name 
     ])
-  end
-  def add_index_breadcrumb
-    add_breadcrumb('部署一覧', admin_departments_path)
-  end
-  def add_users_index_breadcrumb
-    add_breadcrumb('ユーザー管理', admin_users_path)
   end
 end
