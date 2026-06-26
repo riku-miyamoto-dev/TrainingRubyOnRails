@@ -1,17 +1,14 @@
 class Admin::SkillsController < Admin::ApplicationController
   def index
     @skills = Skill.all
-    add_breadcrumb('スキル一覧')
   end
 
   def show
     @skill = Skill.find(params[:id])
-    add_breadcrumb(@skill.name)
   end
 
   def new
     @skill = Skill.new
-    add_breadcrumb('スキル新規作成')
   end
 
   def create
@@ -26,7 +23,6 @@ class Admin::SkillsController < Admin::ApplicationController
   def edit
     @skill = Skill.find(params[:id])
     add_breadcrumb(@skill.name, admin_skill_path(@skill))
-    add_breadcrumb('スキル編集')
   end
 
   def update
