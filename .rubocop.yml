@@ -1,0 +1,23 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/*'
+    - 'config/routes.rb'
+    - 'lib/tasks/**/*'
+    - 'test/**/*'
+    - 'app/views/sitemaps/**/*'
+    - 'config/environments/development.rb'
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 25 
+
+Metrics/AbcSize:
+  Max: 45 
+
+Metrics/CyclomaticComplexity:
+  Max: 10

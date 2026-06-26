@@ -1,98 +1,94 @@
-class Admin::UsersController < Admin::ApplicationController
-  def index
-    @users = User.order(:name).page(params[:page])
-  end
+# frozen_string_literal: true
 
-  def show
-    @user = User.find(params[:id])
-  end
-
-  def new
-    @user = User.new
-    @department = Department.order(:name)
-    @skill = Skill.order(:name)
-  end
-
-  def create
-    @user = User.new(user_params)
-    @department = Department.order(:name)
-    @skill = Skill.order(:name)
-    
-    if params[:user][:image].present?
-      @user.image = params[:user][:image].read
+module Admin
+  class UsersController < Admin::ApplicationController
+    def index
+      @users = User.order(:name).page(params[:page])
     end
 
-    if params[:user][:image].present?
-      @user.image_extension = params[:user][:image].content_type 
+    def show
+      @user = User.find(params[:id])
     end
 
-    if @user.save
-      redirect_to [:admin, @user]
-    else
-      render :new, 
-      status: :unprocessable_entity
-    end
-  end
-
-  def edit
-    @user = User.find(params[:id])
-    @department = Department.order(:name)
-    @skill = Skill.order(:name)
-  end
-
-  def update
-    @user = User.find(params[:id])
-    @user.assign_attributes(user_params)
-    @department = Department.order(:name)
-    @skill = Skill.order(:name)
-
-    
-    if params[:user][:image].present?
-      @user.image = params[:user][:image].read
+    def new
+      @user = User.new
+      @department = Department.order(:name)
+      @skill = Skill.order(:name)
     end
 
-    if params[:user][:image].present?
-      @user.image_extension = params[:user][:image].content_type 
-    end
-    
-    if @user.save
-      redirect_to [:admin, @user]
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
+    def create
+      @user = User.new(user_params)
+      @department = Department.order(:name)
+      @skill = Skill.order(:name)
 
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to admin_users_path
-  end
-  
-  def image
-    @user = User.find(params[:id])
-    send_data @user.image, type: @user.image_extension, disposition: "inline" 
-  end
+      @user.image = params[:user][:image].read if params[:user][:image].present?
 
-  private
+      @user.image_extension = params[:user][:image].content_type if params[:user][:image].present?
+
+      if @user.save
+        redirect_to [:admin, @user]
+      else
+        render :new,
+               status: :unprocessable_entity
+      end
+    end
+
+    def edit
+      @user = User.find(params[:id])
+      @department = Department.order(:name)
+      @skill = Skill.order(:name)
+    end
+
+    def update
+      @user = User.find(params[:id])
+      @user.assign_attributes(user_params)
+      @department = Department.order(:name)
+      @skill = Skill.order(:name)
+
+      @user.image = params[:user][:image].read if params[:user][:image].present?
+
+      @user.image_extension = params[:user][:image].content_type if params[:user][:image].present?
+
+      if @user.save
+        redirect_to [:admin, @user]
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    end
+
+    def destroy
+      @user = User.find(params[:id])
+      @user.destroy
+      redirect_to admin_users_path
+    end
+
+    def image
+      @user = User.find(params[:id])
+      send_data @user.image, type: @user.image_extension, disposition: 'inline'
+    end
+
+    private
+
     def user_params
       params.expect(user: [
-        :name,
-        :furigana, 
-        :gender, 
-        :tel, 
-        :phone, 
-        :email, 
-        :post_number, 
-        :prefecture, 
-        :city, 
-        :town, 
-        :street_address, 
-        :building, 
-        :birthday,
-        :department_id, 
-        :user_skill_id, 
-        :password,
-        skill_ids:[],
-      ])
+                      :name,
+                      :furigana,
+                      :gender,
+                      :tel,
+                      :phone,
+                      :email,
+                      :post_number,
+                      :prefecture,
+                      :city,
+                      :town,
+                      :street_address,
+                      :building,
+                      :birthday,
+                      :department_id,
+                      :user_skill_id,
+                      :password,
+                      { skill_ids: [] }
+                    ])
     end
+  end
 end

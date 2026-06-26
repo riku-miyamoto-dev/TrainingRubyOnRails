@@ -1,23 +1,29 @@
-class Admin::ApplicationController < ActionController::Base
-  allow_browser versions: :modern
-  stale_when_importmap_changes
-  before_action :require_login
+# frozen_string_literal: true
 
-  helper_method :current_user
-  helper_method :logged_in?
+module Admin
+  class ApplicationController < ActionController::Base
+    allow_browser versions: :modern
+    stale_when_importmap_changes
+    before_action :require_login
 
-  private
+    helper_method :current_user
+    helper_method :logged_in?
+
+    private
+
     def current_user
-      if session[:id].present?
-        @current_user = @current_user || User.find(session[:id])
-      end 
-    end
-  def logged_in?
-    current_user.present? 
-  end
+      return unless session[:id].present?
 
-  def require_login
-    if not logged_in?
+      @current_user ||= User.find(session[:id])
+    end
+
+    def logged_in?
+      current_user.present?
+    end
+
+    def require_login
+      return if logged_in?
+
       redirect_to new_sessions_path
     end
   end

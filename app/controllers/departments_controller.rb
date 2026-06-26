@@ -1,5 +1,6 @@
-class DepartmentsController < ApplicationController
+# frozen_string_literal: true
 
+class DepartmentsController < ApplicationController
   def index
     @department = Department.all
   end
