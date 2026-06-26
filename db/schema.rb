@@ -60,7 +60,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_25_055702) do
     t.bigint "user_id", null: false
     t.index ["skill_id"], name: "index_users_skills_on_skill_id"
     t.index ["user_id", "skill_id"], name: "index_users_skills_on_user_id_and_skill_id", unique: true
-    t.index ["user_id"], name: "index_users_skills_on_user_id"
   end
 
   add_foreign_key "users_skills", "skills"

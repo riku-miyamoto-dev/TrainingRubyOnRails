@@ -7,7 +7,7 @@ class AddUniqueAndIndexToUsersAndUsersSkillsAndDepartmentsAndSkills < ActiveReco
     add_index :skills, :name, unique: true 
 
     add_index :users_skills, ["user_id", "skill_id"], name: "index_users_skills_on_user_id_and_skill_id", unique: true
-
+    remove_index :users_skills, :user_id
   end
 end
 
