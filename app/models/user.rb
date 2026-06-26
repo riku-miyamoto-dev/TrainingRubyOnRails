@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   validates :name, :furigana, :gender, :tel, :email, :post_number, :prefecture, :city, :town, :street_address,
             :birthday, presence: { message: '省略できません' }
-  validates :name, length: { maxium: 30 }
+  validates :name, length: { maximum: 30 }
 
   validates :email, uniqueness: { message: 'すでに使われているメールアドレスです' }
   validates :tel, uniqueness: { message: 'すでに使われている携帯番号です' }
