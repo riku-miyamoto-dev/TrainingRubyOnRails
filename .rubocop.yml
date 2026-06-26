@@ -21,3 +21,6 @@ Metrics/AbcSize:
 
 Metrics/CyclomaticComplexity:
   Max: 10
+
+Style/IfUnlessModifier:
+  Enabled: false

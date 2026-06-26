@@ -7,9 +7,9 @@ class UsersController < ApplicationController
       @users = @users.where('name LIKE ?',
                             "#{User.sanitize_sql_like(params[:name])}%")
     end
-
-    @users = @users.where(prefecture: params[:prefecture]) if params[:prefecture].present?
-
+    if params[:prefecture].present?
+      @users = @users.where(prefecture: params[:prefecture])
+    end
     case params[:sort]
     when '生年月日 昇順'
       @users = @users.order(birthday: :asc)

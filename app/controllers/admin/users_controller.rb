@@ -21,9 +21,10 @@ module Admin
       @department = Department.order(:name)
       @skill = Skill.order(:name)
 
-      @user.image = params[:user][:image].read if params[:user][:image].present?
-
-      @user.image_extension = params[:user][:image].content_type if params[:user][:image].present?
+      if params[:user][:image].present?
+        @user.image = params[:user][:image].read
+        @user.image_extension = params[:user][:image].content_type
+      end
 
       if @user.save
         redirect_to [:admin, @user]
@@ -44,10 +45,10 @@ module Admin
       @user.assign_attributes(user_params)
       @department = Department.order(:name)
       @skill = Skill.order(:name)
-
-      @user.image = params[:user][:image].read if params[:user][:image].present?
-
-      @user.image_extension = params[:user][:image].content_type if params[:user][:image].present?
+      if params[:user][:image].present?
+        @user.image = params[:user][:image].read
+        @user.image_extension = params[:user][:image].content_type
+      end
 
       if @user.save
         redirect_to [:admin, @user]

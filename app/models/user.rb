@@ -18,7 +18,9 @@ class User < ApplicationRecord
   scope :id_sort_descending_order, -> { order(id: :desc) }
 
   validates_each :birthday do |record, attr, value|
-    record.errors.add(attr, 'では未来の日付を設定できません') if value > Date.today
+    if value > Date.today
+      record.errors.add(attr, 'では未来の日付を設定できません')
+    end
   end
 
   validates :furigana, format: { with: /\A[ァ-ヶー\s　]+\z/, message: '全角カタカナ、半角スペース、全角スペースのみが使えます' }
