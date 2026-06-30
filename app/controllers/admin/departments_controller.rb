@@ -17,7 +17,7 @@ module Admin
     def create
       @department = Department.new(department_params)
       if @department.save
-        redirect_to [:admin, @department]
+        redirect_to [ :admin, @department ]
       else
         render :new, status: :unprocessable_entity
       end
@@ -31,7 +31,7 @@ module Admin
     def update
       @department = Department.find(params[:id])
       if @department.update(department_params)
-        redirect_to [:admin, @department]
+        redirect_to [ :admin, @department ]
       else
         render :edit, status: :unprocessable_entity
       end

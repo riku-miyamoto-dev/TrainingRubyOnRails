@@ -27,7 +27,7 @@ module Admin
       end
 
       if @user.save
-        redirect_to [:admin, @user]
+        redirect_to [ :admin, @user ]
       else
         render :new,
                status: :unprocessable_entity
@@ -51,7 +51,7 @@ module Admin
       end
 
       if @user.save
-        redirect_to [:admin, @user]
+        redirect_to [ :admin, @user ]
       else
         render :edit, status: :unprocessable_entity
       end
@@ -65,7 +65,7 @@ module Admin
 
     def image
       @user = User.find(params[:id])
-      send_data @user.image, type: @user.image_extension, disposition: 'inline'
+      send_data @user.image, type: @user.image_extension, disposition: "inline"
     end
 
     private

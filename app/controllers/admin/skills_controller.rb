@@ -17,7 +17,7 @@ module Admin
     def create
       @skill = Skill.new(skill_params)
       if @skill.save
-        redirect_to [:admin, @skill]
+        redirect_to [ :admin, @skill ]
       else
         render :new, status: :unprocessable_entity
       end
@@ -31,7 +31,7 @@ module Admin
     def update
       @skill = Skill.find(params[:id])
       if @skill.update(skill_params)
-        redirect_to [:admin, @skill]
+        redirect_to [ :admin, @skill ]
       else
         render :edit, status: :unprocessable_entity
       end
