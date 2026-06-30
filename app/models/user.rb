@@ -47,5 +47,4 @@ class User < ApplicationRecord
 
   scope :id_sort_ascending_order, -> { order(id: :asc) }
   scope :id_sort_descending_order, -> { order(id: :desc) }
-
 end
