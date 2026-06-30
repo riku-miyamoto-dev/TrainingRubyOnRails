@@ -4,20 +4,20 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     if params[:name].present?
-      @users = @users.where('name LIKE ?',
+      @users = @users.where("name LIKE ?",
                             "#{User.sanitize_sql_like(params[:name])}%")
     end
     if params[:prefecture].present?
       @users = @users.where(prefecture: params[:prefecture])
     end
     case params[:sort]
-    when '生年月日 昇順'
+    when "生年月日 昇順"
       @users = @users.order(birthday: :asc)
-    when '生年月日 降順'
+    when "生年月日 降順"
       @users = @users.order(birthday: :desc)
-    when 'id 昇順'
+    when "id 昇順"
       @users = @users.id_sort_ascending_order
-    when 'id 降順'
+    when "id 降順"
       @users = @users.id_sort_descending_order
     end
 
@@ -36,6 +36,6 @@ class UsersController < ApplicationController
 
   def image
     @user = User.find(params[:id])
-    send_data @user.image, type: @user.image_extension, disposition: 'inline'
+    send_data @user.image, type: @user.image_extension, disposition: "inline"
   end
 end

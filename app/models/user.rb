@@ -15,34 +15,34 @@ class User < ApplicationRecord
   ].freeze
 
   # 存在チェック ＆ 文字数制限
-  validates :name, presence: { message: '省略できません' }, length: { maximum: 30 }
+  validates :name, presence: { message: "省略できません" }, length: { maximum: 30 }
 
   # その他の必須項目
   validates :furigana, :gender, :tel, :email, :post_number, :prefecture,
             :city, :town, :street_address, :birthday,
-            presence: { message: '省略できません' }
+            presence: { message: "省略できません" }
 
   # 一意性チェック（フォーマット含む）
-  validates :email, uniqueness: { message: 'すでに使われているメールアドレスです' }, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :tel, uniqueness: { message: 'すでに使われている携帯番号です' }
+  validates :email, uniqueness: { message: "すでに使われているメールアドレスです" }, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :tel, uniqueness: { message: "すでに使われている携帯番号です" }
 
   # 各種正規表現チェック
-  validates :furigana, format: { with: /\A[ァ-ヶー\s ]+\z/, message: '全角カタカナ、半角スペース、全角スペースのみが使えます' }
-  validates :post_number, format: { with: /\A\d{3}-\d{4}\z/, message: 'は３桁-４桁の形でお願いします' }
-  validates :phone, format: { with: /\A\d{3}-\d{4}-\d{4}\z/, message: 'は３桁-４桁-４桁の形でお願いします' }, allow_nil: true
+  validates :furigana, format: { with: /\A[ァ-ヶー\s ]+\z/, message: "全角カタカナ、半角スペース、全角スペースのみが使えます" }
+  validates :post_number, format: { with: /\A\d{3}-\d{4}\z/, message: "は３桁-４桁の形でお願いします" }
+  validates :phone, format: { with: /\A\d{3}-\d{4}-\d{4}\z/, message: "は３桁-４桁-４桁の形でお願いします" }, allow_nil: true
   validates :tel, format: {
     with: /\A0([6789]0-\d{4}|\d{1}-\d{4}|\d{2}-\d{3}|\d{3}-\d{2}|\d{4}-\d{1})-\d{4}\z/,
-    message: 'は2桁-４桁-４桁 or 4桁-2桁-４桁 or 3桁-3桁-４桁 or 3桁-2桁-４桁の形でお願いします'
+    message: "は2桁-４桁-４桁 or 4桁-2桁-４桁 or 3桁-3桁-４桁 or 3桁-2桁-４桁の形でお願いします"
   }
 
   # 未来の日時不可
   validates_each :birthday do |record, attr, value|
     if value && value > Date.today
-      record.errors.add(attr, 'では未来の日付を設定できません')
+      record.errors.add(attr, "では未来の日付を設定できません")
     end
   end
 
-  enum :gender, { male: '男', female: '女', other: 'その他' }, validate: true
+  enum :gender, { male: "男", female: "女", other: "その他" }, validate: true
   enum :prefecture, PREFECTURES.index_with(&:to_s), validate: true
 
   scope :id_sort_ascending_order, -> { order(id: :asc) }
