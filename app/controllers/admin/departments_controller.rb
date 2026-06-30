@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class DepartmentsController < Admin::ApplicationController
     def index
@@ -25,7 +23,6 @@ module Admin
 
     def edit
       @department = Department.find(params[:id])
-      add_breadcrumb(@department.name, admin_department_path(@department))
     end
 
     def update
