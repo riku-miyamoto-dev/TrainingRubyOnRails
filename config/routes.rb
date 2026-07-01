@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   get '/sitemaps', to: 'sitemaps#show', defaults: { format: 'xml' }
 
+  # get '/404', to: 'errors#not_found', as: :not_found
+
+
   resources :departments, only: %i[index show] do
     resources :users, only: %i[index show] do
       member do

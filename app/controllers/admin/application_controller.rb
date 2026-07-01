@@ -3,6 +3,9 @@ class Admin::ApplicationController < ActionController::Base
   stale_when_importmap_changes
   before_action :require_login
 
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
+
   helper_method :current_user
   helper_method :logged_in?
 
@@ -22,5 +25,9 @@ class Admin::ApplicationController < ActionController::Base
     return if logged_in?
 
     redirect_to new_sessions_path
+  end
+
+    def record_not_found
+    render template: 'admin/errors/not_found', status: :not_found
   end
 end
