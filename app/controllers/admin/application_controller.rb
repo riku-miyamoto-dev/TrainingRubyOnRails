@@ -1,28 +1,26 @@
-module Admin
-  class ApplicationController < ActionController::Base
-    allow_browser versions: :modern
-    stale_when_importmap_changes
-    before_action :require_login
+class Admin::ApplicationController < ActionController::Base
+  allow_browser versions: :modern
+  stale_when_importmap_changes
+  before_action :require_login
 
-    helper_method :current_user
-    helper_method :logged_in?
+  helper_method :current_user
+  helper_method :logged_in?
 
-    private
+  private
 
-    def current_user
-      return unless session[:id].present?
+  def current_user
+    return unless session[:id].present?
 
-      @current_user ||= User.find(session[:id])
-    end
+    @current_user ||= User.find(session[:id])
+  end
 
-    def logged_in?
-      current_user.present?
-    end
+  def logged_in?
+    current_user.present?
+  end
 
-    def require_login
-      return if logged_in?
+  def require_login
+    return if logged_in?
 
-      redirect_to new_sessions_path
-    end
+    redirect_to new_sessions_path
   end
 end

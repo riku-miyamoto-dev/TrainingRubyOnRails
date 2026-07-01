@@ -21,7 +21,8 @@ Style/IfUnlessModifier:
   Enabled: false
 
 Style/ClassAndModuleChildren:
-  Enabled: false
+  Enabled: true
+  EnforcedStyle: compact
 
 Style/FormatStringToken:
   Enabled: false
@@ -37,3 +38,4 @@ Metrics/AbcSize:
 
 Metrics/CyclomaticComplexity:
   Enabled: false
+
