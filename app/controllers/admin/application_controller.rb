@@ -27,7 +27,7 @@ class Admin::ApplicationController < ActionController::Base
     redirect_to new_sessions_path
   end
 
-    def record_not_found
-    render template: 'admin/errors/not_found', status: :not_found
+  def record_not_found
+    render template: "admin/errors/not_found", status: :not_found
   end
 end
