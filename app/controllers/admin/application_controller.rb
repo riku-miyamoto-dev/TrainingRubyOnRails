@@ -7,18 +7,20 @@ class Admin::ApplicationController < ActionController::Base
   helper_method :logged_in?
 
   private
-    def current_user
-      if session[:id].present?
-        @current_user = @current_user || User.find(session[:id])
-      end 
-    end
+
+  def current_user
+    return unless session[:id].present?
+
+    @current_user ||= User.find(session[:id])
+  end
+
   def logged_in?
-    current_user.present? 
+    current_user.present?
   end
 
   def require_login
-    if not logged_in?
-      redirect_to new_sessions_path
-    end
+    return if logged_in?
+
+    redirect_to new_sessions_path
   end
 end

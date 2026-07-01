@@ -14,7 +14,7 @@ class Admin::SkillsController < Admin::ApplicationController
   def create
     @skill = Skill.new(skill_params)
     if @skill.save
-      redirect_to [:admin, @skill]
+      redirect_to [ :admin, @skill ]
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class Admin::SkillsController < Admin::ApplicationController
   def update
     @skill = Skill.find(params[:id])
     if @skill.update(skill_params)
-      redirect_to [:admin, @skill]
+      redirect_to [ :admin, @skill ]
     else
       render :edit, status: :unprocessable_entity
     end
@@ -41,9 +41,10 @@ class Admin::SkillsController < Admin::ApplicationController
   end
 
   private
+
   def skill_params
     params.expect(skill: [
-      :name 
-    ])
+                    :name
+                  ])
   end
 end

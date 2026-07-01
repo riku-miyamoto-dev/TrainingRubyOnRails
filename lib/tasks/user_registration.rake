@@ -1,15 +1,12 @@
+# frozen_string_literal: true
+
 namespace :import do
-  
-  desc "csvファイルでレコードを読み込む(エラーレコードは排除)"
-  task :user_csv, [:file_path] => :environment do |task, args| 
+  desc 'csvファイルでレコードを読み込む(エラーレコードは排除)'
+  task :user_csv, [:file_path] => :environment do |_task, args|
     file_path = args[:file_path]
 
-    if file_path.blank?
-      abort "エラー: CSVファイルのパスを引数として指定してください。"
-    end
-    unless File.exist?(file_path)
-      abort "エラー: 指定されたファイルが見つかりません: #{file_path}"
-    end
+    abort 'エラー: CSVファイルのパスを引数として指定してください。' if file_path.blank?
+    abort "エラー: 指定されたファイルが見つかりません: #{file_path}" unless File.exist?(file_path)
 
     error_records = []
     users = []
@@ -34,15 +31,13 @@ namespace :import do
       )
     end
     users.each do |user|
-      begin
-        user.save!
-      rescue ActiveRecord::RecordInvalid => e
-        error_records << {name: user.name, error: e.message }
-      end
+      user.save!
+    rescue ActiveRecord::RecordInvalid => e
+      error_records << { name: user.name, error: e.message }
     end
 
     error_records.each do |err|
       puts "保存失敗レコード Name: #{err[:name]}, Error: #{err[:error]}"
     end
-  end 
+  end
 end

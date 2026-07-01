@@ -14,7 +14,7 @@ class Admin::DepartmentsController < Admin::ApplicationController
   def create
     @department = Department.new(department_params)
     if @department.save
-      redirect_to [:admin, @department]
+      redirect_to [ :admin, @department ]
     else
       render :new, status: :unprocessable_entity
     end
@@ -22,13 +22,12 @@ class Admin::DepartmentsController < Admin::ApplicationController
 
   def edit
     @department = Department.find(params[:id])
-    add_breadcrumb(@department.name, admin_department_path(@department))
   end
 
   def update
     @department = Department.find(params[:id])
     if @department.update(department_params)
-      redirect_to [:admin, @department]
+      redirect_to [ :admin, @department ]
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,11 +42,11 @@ class Admin::DepartmentsController < Admin::ApplicationController
     end
   end
 
-  
   private
+
   def department_params
-    params.expect(department: [ 
-      :name 
-    ])
+    params.expect(department: [
+                    :name
+                  ])
   end
 end

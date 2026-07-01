@@ -1,6 +1,7 @@
-xml.instruct! :xml, version: "1.0"
-xml.urlset xmlns: "http://www.sitemaps.org/schemas/sitemap/0.9" do
+# frozen_string_literal: true
 
+xml.instruct! :xml, version: '1.0'
+xml.urlset xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9' do
   xml.url do
     xml.loc departments_url
   end
@@ -20,16 +21,15 @@ xml.urlset xmlns: "http://www.sitemaps.org/schemas/sitemap/0.9" do
 
   @skills.each do |skill|
     xml.url do
-      xml.loc skill_url(skill) 
+      xml.loc skill_url(skill)
       xml.lastmod skill.updated_at.iso8601
     end
   end
 
   @departments.each do |department|
     xml.url do
-      xml.loc department_url(department) 
+      xml.loc department_url(department)
       xml.lastmod department.updated_at.iso8601
     end
   end
-
 end

@@ -17,20 +17,17 @@ class Admin::UsersController < Admin::ApplicationController
     @user = User.new(user_params)
     @department = Department.order(:name)
     @skill = Skill.order(:name)
-    
-    if params[:user][:image].present?
-      @user.image = params[:user][:image].read
-    end
 
     if params[:user][:image].present?
-      @user.image_extension = params[:user][:image].content_type 
+      @user.image = params[:user][:image].read
+      @user.image_extension = params[:user][:image].content_type
     end
 
     if @user.save
-      redirect_to [:admin, @user]
+      redirect_to [ :admin, @user ]
     else
-      render :new, 
-      status: :unprocessable_entity
+      render :new,
+             status: :unprocessable_entity
     end
   end
 
@@ -45,18 +42,13 @@ class Admin::UsersController < Admin::ApplicationController
     @user.assign_attributes(user_params)
     @department = Department.order(:name)
     @skill = Skill.order(:name)
-
-    
     if params[:user][:image].present?
       @user.image = params[:user][:image].read
+      @user.image_extension = params[:user][:image].content_type
     end
 
-    if params[:user][:image].present?
-      @user.image_extension = params[:user][:image].content_type 
-    end
-    
     if @user.save
-      redirect_to [:admin, @user]
+      redirect_to [ :admin, @user ]
     else
       render :edit, status: :unprocessable_entity
     end
@@ -67,32 +59,33 @@ class Admin::UsersController < Admin::ApplicationController
     @user.destroy
     redirect_to admin_users_path
   end
-  
+
   def image
     @user = User.find(params[:id])
-    send_data @user.image, type: @user.image_extension, disposition: "inline" 
+    send_data @user.image, type: @user.image_extension, disposition: "inline"
   end
 
   private
-    def user_params
-      params.expect(user: [
-        :name,
-        :furigana, 
-        :gender, 
-        :tel, 
-        :phone, 
-        :email, 
-        :post_number, 
-        :prefecture, 
-        :city, 
-        :town, 
-        :street_address, 
-        :building, 
-        :birthday,
-        :department_id, 
-        :user_skill_id, 
-        :password,
-        skill_ids:[],
-      ])
-    end
+
+  def user_params
+    params.expect(user: [
+                    :name,
+                    :furigana,
+                    :gender,
+                    :tel,
+                    :phone,
+                    :email,
+                    :post_number,
+                    :prefecture,
+                    :city,
+                    :town,
+                    :street_address,
+                    :building,
+                    :birthday,
+                    :department_id,
+                    :user_skill_id,
+                    :password,
+                    { skill_ids: [] }
+                  ])
+  end
 end
