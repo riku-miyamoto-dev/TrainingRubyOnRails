@@ -21,8 +21,7 @@ Style/IfUnlessModifier:
   Enabled: false
 
 Style/ClassAndModuleChildren:
-  Enabled: true
-  EnforcedStyle: compact
+  Enabled: false
 
 Style/FormatStringToken:
   Enabled: false

@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :logged_in?
 
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
   private
 
   def current_user
@@ -15,5 +17,9 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     current_user.present?
+  end
+
+  def record_not_found
+    render template: "errors/not_found", status: :not_found
   end
 end
